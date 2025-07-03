@@ -18,6 +18,7 @@ export const AuthFormLayout: React.FC<IAuthFormLayoutProp> = ({
           src={schoolLogo}
           alt="School logo"
           draggable="false"
+          loading="lazy"
         />
       </div>
       <h1 className="font-bold text-center mb-2">{heading}</h1>

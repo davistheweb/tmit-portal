@@ -22,6 +22,7 @@ export const Login: React.FC = () => {
             className=" w-[900px] h-screen"
             src={authBackground}
             alt="background"
+            loading="lazy"
             draggable="false"
           />
         </div>

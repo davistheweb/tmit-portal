@@ -11,7 +11,7 @@ export const AuthFormLayout: React.FC<IAuthFormLayoutProp> = ({
   children,
 }) => {
   return (
-    <div className="flex flex-col justify-centeri bg-white- px-5 py-5 border border-gray-400 shadow-xl rounded-sm max-w-2xl">
+    <div className="flex flex-col justify-centeri bg-white- px-5 py-5 border border-gray-400 shadow-xl rounded-sm w-[600px]">
       <div className="flex justify-center">
         <img
           className="w-2/12 mb-5"

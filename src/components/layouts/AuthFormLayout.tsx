@@ -16,7 +16,7 @@ export const AuthFormLayout: React.FC<IAuthFormLayoutProp> = ({
         <img
           className="w-2/12 mb-5"
           src={schoolLogo}
-          alt="School logo"
+          alt="Tmit logo"
           draggable="false"
           loading="lazy"
         />

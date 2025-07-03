@@ -1,4 +1,4 @@
 import schoolLogo from "./images/schoolLogo.png";
-import authBackground from "./images/School_Entrance_Image.jpg";
+import authBackground from "./images/Back_gate_image.png";
 
 export { schoolLogo, authBackground };

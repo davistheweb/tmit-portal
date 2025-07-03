@@ -19,7 +19,7 @@ export const Login: React.FC = () => {
       <div className="bg-green-500 h-screen w-[700px]">
         <div className="">
           <img
-            className="hidden w-[900px] h-screen"
+            className=" w-[900px] h-screen"
             src={authBackground}
             alt="background"
             draggable="false"

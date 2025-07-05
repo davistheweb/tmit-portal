@@ -1,7 +1,6 @@
 import * as React from "react";
 import { Link } from "react-router";
 import { Eye, EyeOff } from "lucide-react";
-// import { authBackground } from "@/assets";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { AuthFormLayout, AuthBackground } from "@/components/layouts";

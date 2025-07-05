@@ -9,7 +9,7 @@ import { AuthFormLayout } from "@/components/layouts/AuthFormLayout";
 export const Login: React.FC = () => {
   return (
     <div className="flex gap-5 justify-between w-full">
-      <div className="mt-5 mr-5 ml-5">
+      <div className="flex items-center px-5">
         <AuthFormLayout
           heading="Welcome to TMIT"
           subtitle="Login to access the student portal"
@@ -17,10 +17,10 @@ export const Login: React.FC = () => {
           <LoginForm />
         </AuthFormLayout>
       </div>
-      <div className="bg-green-500 h-screen w-[700px]">
+      <div className="bg-green-500 h-screen w-[1200px]">
         <div className="">
           <img
-            className=" w-[900px] h-screen"
+            className=" w-[990px] h-screen"
             src={authBackground}
             alt="background"
             loading="lazy"
@@ -43,7 +43,7 @@ const LoginForm: React.FC = () => {
               Username
             </Label>
             <Input
-              className="border border-gray-300 focus:border-green-500 focus:ring-2 focus:ring-green-500 focus:outline-none"
+              className="border border-gray-300 focus:border-green-500 focus:ring-1 focus:ring-green-500 focus:outline-none"
               type="text"
               placeholder="Enter username"
               id="username"
@@ -55,11 +55,11 @@ const LoginForm: React.FC = () => {
             </Label>
             <div className="relative flex">
               <Input
-                className="border border-gray-300 focus:border-green-500 focus:ring-2 focus:ring-green-500 focus:outline-none"
+                className="border border-gray-300 focus:border-green-500 focus:ring-1 focus:ring-green-500 focus:outline-none"
                 type={isVisibe ? "text" : "password"}
                 placeholder="Enter passowrd"
                 id="password"
-              ></Input>
+              />
               <span
                 className="absolute right-2 top-2.5 cursor-pointer"
                 onClick={(): void => setIsVisible((prev) => !prev)}

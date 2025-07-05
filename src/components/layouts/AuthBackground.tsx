@@ -7,9 +7,9 @@ export const AuthBackground: React.FC<{ children?: React.ReactNode }> = ({
   return (
     <div className="bg-green-500 relative flex items-center justify-center md:justify-start w-full h-screen overflow-y-hidden overflow-x-hidden">
       <div
-          className="absolute md:hidden w-full h-screen bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url(${authBackground})` }}
-        />
+        className="absolute md:hidden w-full h-screen bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${authBackground})` }}
+      />
       <div className="absolute right-0 top-0 hidden md:flex">
         <div>
           <img

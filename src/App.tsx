@@ -4,7 +4,7 @@ import { Login } from "./auth/Login";
 
 const App: React.FC = () => {
   return (
-    <div className="w-full h-screen overflow-x-hidden bg-white text-black">
+    <div className="relative w-full h-screen overflow-x-hidden bg-white text-black">
       <Router>
         <Routes>
           <Route path="/auth/login" element={<Login />}></Route>

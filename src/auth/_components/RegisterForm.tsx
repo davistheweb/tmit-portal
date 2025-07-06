@@ -15,7 +15,7 @@ const RegisterForm: React.FC = () => {
   const [isVisibe, setIsVisible] = React.useState<boolean>(false);
   return (
     <form action="" onSubmit={(e: React.FormEvent) => e.preventDefault()}>
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-2">
         <div>
           <Label htmlFor="username" className="mb-2">
             Registration Number
@@ -26,6 +26,7 @@ const RegisterForm: React.FC = () => {
             placeholder="Enter username"
             id="username"
           />
+          <span className="text-red-600 text-xs">Pls!</span>
         </div>
         <div>
           <Label htmlFor="username" className="mb-2">
@@ -37,6 +38,7 @@ const RegisterForm: React.FC = () => {
             placeholder="Enter fullname"
             id="username"
           />
+          <span className="text-red-600 text-xs">Pls!</span>
         </div>
         <div>
           <Label htmlFor="username" className="mb-2">
@@ -48,24 +50,28 @@ const RegisterForm: React.FC = () => {
             placeholder="Enter email"
             id="username"
           />
+          <span className="text-red-600 text-xs">Pls!</span>
         </div>
         <div>
           <Label htmlFor="passoword" className="mb-2">
             Password
           </Label>
-          <div className="relative flex">
-            <Input
-              className="border border-gray-300 focus:border-green-500 focus:ring-1 focus:ring-green-500 focus:outline-none"
-              type={isVisibe ? "text" : "password"}
-              placeholder="Enter passowrd"
-              id="password"
-            />
-            <span
-              className="absolute right-2 top-2.5 cursor-pointer"
-              onClick={(): void => setIsVisible((prev) => !prev)}
-            >
-              {isVisibe ? <EyeOff size={17} /> : <Eye size={17} />}
-            </span>
+          <div className="">
+            <div className="relative flex">
+              <Input
+                className="border border-gray-300 focus:border-green-500 focus:ring-1 focus:ring-green-500 focus:outline-none"
+                type={isVisibe ? "text" : "password"}
+                placeholder="Enter passowrd"
+                id="password"
+              />
+              <span
+                className="absolute right-2 top-2.5 cursor-pointer"
+                onClick={(): void => setIsVisible((prev) => !prev)}
+              >
+                {isVisibe ? <EyeOff size={17} /> : <Eye size={17} />}
+              </span>
+            </div>
+            <span className="text-red-600 text-xs">Pls!</span>
           </div>
         </div>
         {/* <div className="w-full h-[0.3px] bg-gray-400 z-10" /> */}

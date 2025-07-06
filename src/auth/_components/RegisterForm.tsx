@@ -17,7 +17,7 @@ const RegisterForm: React.FC = () => {
     <form action="" onSubmit={(e: React.FormEvent) => e.preventDefault()}>
       <div className="flex flex-col gap-4">
         <div>
-          <Label htmlFor="username" className="mb-4">
+          <Label htmlFor="username" className="mb-2">
             Registration Number
           </Label>
           <Input
@@ -28,7 +28,7 @@ const RegisterForm: React.FC = () => {
           />
         </div>
         <div>
-          <Label htmlFor="username" className="mb-4">
+          <Label htmlFor="username" className="mb-2">
             Name
           </Label>
           <Input
@@ -39,7 +39,7 @@ const RegisterForm: React.FC = () => {
           />
         </div>
         <div>
-          <Label htmlFor="username" className="mb-4">
+          <Label htmlFor="username" className="mb-2">
             Email
           </Label>
           <Input
@@ -50,7 +50,7 @@ const RegisterForm: React.FC = () => {
           />
         </div>
         <div>
-          <Label htmlFor="passoword" className="mb-4">
+          <Label htmlFor="passoword" className="mb-2">
             Password
           </Label>
           <div className="relative flex">
@@ -79,7 +79,7 @@ const RegisterForm: React.FC = () => {
         <div className="w-full h-[0.3px] bg-gray-400 z-10" />
       </div>
       <button
-        className="rounded-sm text-white text-[15px] font-semibold mt-4 cursor-pointer w-24 h-10 bg-green-500"
+        className="rounded-sm text-white text-[15px] font-semibold mt-2 cursor-pointer w-24 h-10 bg-green-500"
         type="submit"
       >
         Register

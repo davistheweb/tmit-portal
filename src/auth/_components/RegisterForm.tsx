@@ -5,11 +5,11 @@ import {
   registerFormSchema,
   type RegisterFormSchema,
 } from "@/lib/validators/registerFormSchema";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Eye, EyeOff } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { AuthFormLayout } from "@/components/layouts";
-import { zodResolver } from "@hookform/resolvers/zod";
 
 const RegisterForm: React.FC = () => {
   const [isVisibe, setIsVisible] = React.useState<boolean>(false);
@@ -22,14 +22,15 @@ const RegisterForm: React.FC = () => {
     resolver: zodResolver(registerFormSchema),
   });
 
-  function SubmitForm(data: RegisterFormSchema) {
-    console.log(data);
+  function SubmitRegisterForm(data: RegisterFormSchema) {
+    const { name } = data;
+    console.log(name);
   }
   return (
-    <form action="" onSubmit={handleSubmit(SubmitForm)}>
+    <form onSubmit={handleSubmit(SubmitRegisterForm)}>
       <div className="flex flex-col gap-2">
         <div>
-          <Label htmlFor="username" className="mb-1">
+          <Label htmlFor="regNum" className="mb-1">
             Registration Number
           </Label>
           <Input
@@ -39,16 +40,16 @@ const RegisterForm: React.FC = () => {
             type="text"
             {...register("regNum")}
             placeholder="Enter username"
-            id="username"
+            id="regNum"
           />
           {errors.regNum && (
-            <span className="text-red-600 text-xs">
+            <span className="text-red-600 text-xs select-none">
               {errors.regNum.message}
             </span>
           )}
         </div>
         <div>
-          <Label htmlFor="username" className="mb-1">
+          <Label htmlFor="name" className="mb-1">
             Name
           </Label>
           <Input
@@ -58,14 +59,16 @@ const RegisterForm: React.FC = () => {
             type="text"
             {...register("name")}
             placeholder="Enter fullname"
-            id="username"
+            id="name"
           />
           {errors.name && (
-            <span className="text-red-600 text-xs">{errors.name.message}</span>
+            <span className="text-red-600 text-xs select-none">
+              {errors.name.message}
+            </span>
           )}
         </div>
         <div>
-          <Label htmlFor="username" className="mb-1">
+          <Label htmlFor="email" className="mb-1">
             Email
           </Label>
           <Input
@@ -75,10 +78,12 @@ const RegisterForm: React.FC = () => {
             type="email"
             {...register("email")}
             placeholder="Enter email"
-            id="username"
+            id="email"
           />
           {errors.email && (
-            <span className="text-red-600 text-xs">{errors.email.message}</span>
+            <span className="text-red-600 text-xs select-none">
+              {errors.email.message}
+            </span>
           )}
         </div>
         <div>
@@ -103,7 +108,7 @@ const RegisterForm: React.FC = () => {
             </span>
           </div>
           {errors.password && (
-            <span className="text-red-600 text-xs">
+            <span className="text-red-600 text-xs select-none">
               {errors.password.message}
             </span>
           )}
@@ -130,7 +135,7 @@ const RegisterForm: React.FC = () => {
             </span>
           </div>
           {errors.confirmPassword && (
-            <span className="text-red-600 text-xs">
+            <span className="text-red-600 text-xs select-none">
               {errors.confirmPassword.message}
             </span>
           )}

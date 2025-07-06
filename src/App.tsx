@@ -1,6 +1,6 @@
 import * as React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router";
-import { Login } from "./auth/pages/Login";
+import { Login, Register } from "./auth/pages";
 
 const App: React.FC = () => {
   return (
@@ -8,6 +8,7 @@ const App: React.FC = () => {
       <Router>
         <Routes>
           <Route path="/auth/login" element={<Login />}></Route>
+          <Route path="/auth/register" element={<Register />}></Route>
         </Routes>
       </Router>
     </div>

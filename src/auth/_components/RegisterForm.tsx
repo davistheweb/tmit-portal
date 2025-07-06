@@ -85,59 +85,55 @@ const RegisterForm: React.FC = () => {
           <Label htmlFor="passoword" className="mb-1">
             Password
           </Label>
-          <div className="">
-            <div className="relative flex">
-              <Input
-                className={`border ${
-                  errors.password ? "border-red-300" : "border-gray-300"
-                } focus:border-green-500 focus:ring-1 focus:ring-green-500 focus:outline-none`}
-                type={isVisibe ? "text" : "password"}
-                {...register("password")}
-                placeholder="Enter passowrd"
-                id="password"
-              />
-              <span
-                className="absolute right-2 top-2.5 cursor-pointer"
-                onClick={(): void => setIsVisible((prev) => !prev)}
-              >
-                {isVisibe ? <EyeOff size={17} /> : <Eye size={17} />}
-              </span>
-            </div>
-            {errors.password && (
-              <span className="text-red-600 text-xs">
-                {errors.password.message}
-              </span>
-            )}
+          <div className="relative flex">
+            <Input
+              className={`border ${
+                errors.password ? "border-red-300" : "border-gray-300"
+              } focus:border-green-500 focus:ring-1 focus:ring-green-500 focus:outline-none`}
+              type={isVisibe ? "text" : "password"}
+              {...register("password")}
+              placeholder="Enter passowrd"
+              id="password"
+            />
+            <span
+              className="absolute right-2 top-2.5 cursor-pointer"
+              onClick={(): void => setIsVisible((prev) => !prev)}
+            >
+              {isVisibe ? <EyeOff size={17} /> : <Eye size={17} />}
+            </span>
           </div>
+          {errors.password && (
+            <span className="text-red-600 text-xs">
+              {errors.password.message}
+            </span>
+          )}
         </div>
         <div>
           <Label htmlFor="confirm passoword" className="mb-1">
             Confirm Password
           </Label>
-          <div className="">
-            <div className="relative flex">
-              <Input
-                className={`border ${
-                  errors.confirmPassword ? "border-red-300" : "border-gray-300"
-                } focus:border-green-500 focus:ring-1 focus:ring-green-500 focus:outline-none`}
-                type={isVisibe ? "text" : "password"}
-                {...register("confirmPassword")}
-                placeholder="Confirm password"
-                id="confirm password"
-              />
-              <span
-                className="absolute right-2 top-2.5 cursor-pointer"
-                onClick={(): void => setIsVisible((prev) => !prev)}
-              >
-                {isVisibe ? <EyeOff size={17} /> : <Eye size={17} />}
-              </span>
-            </div>
-            {errors.confirmPassword && (
-              <span className="text-red-600 text-xs">
-                {errors.confirmPassword.message}
-              </span>
-            )}
+          <div className="relative flex">
+            <Input
+              className={`border ${
+                errors.confirmPassword ? "border-red-300" : "border-gray-300"
+              } focus:border-green-500 focus:ring-1 focus:ring-green-500 focus:outline-none`}
+              type={isVisibe ? "text" : "password"}
+              {...register("confirmPassword")}
+              placeholder="Confirm password"
+              id="confirm password"
+            />
+            <span
+              className="absolute right-2 top-2.5 cursor-pointer"
+              onClick={(): void => setIsVisible((prev) => !prev)}
+            >
+              {isVisibe ? <EyeOff size={17} /> : <Eye size={17} />}
+            </span>
           </div>
+          {errors.confirmPassword && (
+            <span className="text-red-600 text-xs">
+              {errors.confirmPassword.message}
+            </span>
+          )}
         </div>
         {/* <div className="w-full h-[0.3px] bg-gray-400 z-10" /> */}
       </div>

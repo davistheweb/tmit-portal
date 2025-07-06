@@ -1,66 +1,98 @@
 import * as React from "react";
 // import { Link } from "react-router";
-// import { z } from "zod";
-// import {useForm }from "react-hook-form";
+import { useForm } from "react-hook-form";
+import {
+  registerFormSchema,
+  type RegisterFormSchema,
+} from "@/lib/validators/registerFormSchema";
 import { Eye, EyeOff } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { AuthFormLayout } from "@/components/layouts";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 const RegisterForm: React.FC = () => {
-  // const { resister } = useForm();
-  // const formSchema = z.object({
-  //   email: z.string().email("Please input a valid email"),
-  // });
   const [isVisibe, setIsVisible] = React.useState<boolean>(false);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<RegisterFormSchema>({
+    resolver: zodResolver(registerFormSchema),
+  });
+
+  function SubmitForm(data: RegisterFormSchema) {
+    console.log(data);
+  }
   return (
-    <form action="" onSubmit={(e: React.FormEvent) => e.preventDefault()}>
+    <form action="" onSubmit={handleSubmit(SubmitForm)}>
       <div className="flex flex-col gap-2">
         <div>
-          <Label htmlFor="username" className="mb-2">
+          <Label htmlFor="username" className="mb-1">
             Registration Number
           </Label>
           <Input
-            className="borde border-gray-300 focus:border-green-500 focus:ring-1 focus:ring-green-500 focus:outline-none"
+            className={`border ${
+              errors.regNum ? "border-red-300" : "border-gray-300"
+            } focus:border-green-500 focus:ring-1 focus:ring-green-500 focus:outline-none`}
             type="text"
+            {...register("regNum")}
             placeholder="Enter username"
             id="username"
           />
-          <span className="text-red-600 text-xs">Pls!</span>
+          {errors.regNum && (
+            <span className="text-red-600 text-xs">
+              {errors.regNum.message}
+            </span>
+          )}
         </div>
         <div>
-          <Label htmlFor="username" className="mb-2">
+          <Label htmlFor="username" className="mb-1">
             Name
           </Label>
           <Input
-            className="borde border-gray-300 focus:border-green-500 focus:ring-1 focus:ring-green-500 focus:outline-none"
+            className={`border ${
+              errors.name ? "border-red-300" : "border-gray-300"
+            } focus:border-green-500 focus:ring-1 focus:ring-green-500 focus:outline-none`}
             type="text"
+            {...register("name")}
             placeholder="Enter fullname"
             id="username"
           />
-          <span className="text-red-600 text-xs">Pls!</span>
+          {errors.name && (
+            <span className="text-red-600 text-xs">{errors.name.message}</span>
+          )}
         </div>
         <div>
-          <Label htmlFor="username" className="mb-2">
+          <Label htmlFor="username" className="mb-1">
             Email
           </Label>
           <Input
-            className="borde border-gray-300 focus:border-green-500 focus:ring-1 focus:ring-green-500 focus:outline-none"
+            className={`border ${
+              errors.email ? "border-red-300" : "border-gray-300"
+            } focus:border-green-500 focus:ring-1 focus:ring-green-500 focus:outline-none`}
             type="email"
+            {...register("email")}
             placeholder="Enter email"
             id="username"
           />
-          <span className="text-red-600 text-xs">Pls!</span>
+          {errors.email && (
+            <span className="text-red-600 text-xs">{errors.email.message}</span>
+          )}
         </div>
         <div>
-          <Label htmlFor="passoword" className="mb-2">
+          <Label htmlFor="passoword" className="mb-1">
             Password
           </Label>
           <div className="">
             <div className="relative flex">
               <Input
-                className="border border-gray-300 focus:border-green-500 focus:ring-1 focus:ring-green-500 focus:outline-none"
+                className={`border ${
+                  errors.password ? "border-red-300" : "border-gray-300"
+                } focus:border-green-500 focus:ring-1 focus:ring-green-500 focus:outline-none`}
                 type={isVisibe ? "text" : "password"}
+                {...register("password")}
                 placeholder="Enter passowrd"
                 id="password"
               />
@@ -71,7 +103,40 @@ const RegisterForm: React.FC = () => {
                 {isVisibe ? <EyeOff size={17} /> : <Eye size={17} />}
               </span>
             </div>
-            <span className="text-red-600 text-xs">Pls!</span>
+            {errors.password && (
+              <span className="text-red-600 text-xs">
+                {errors.password.message}
+              </span>
+            )}
+          </div>
+        </div>
+        <div>
+          <Label htmlFor="confirm passoword" className="mb-1">
+            Confirm Password
+          </Label>
+          <div className="">
+            <div className="relative flex">
+              <Input
+                className={`border ${
+                  errors.confirmPassword ? "border-red-300" : "border-gray-300"
+                } focus:border-green-500 focus:ring-1 focus:ring-green-500 focus:outline-none`}
+                type={isVisibe ? "text" : "password"}
+                {...register("confirmPassword")}
+                placeholder="Confirm password"
+                id="confirm password"
+              />
+              <span
+                className="absolute right-2 top-2.5 cursor-pointer"
+                onClick={(): void => setIsVisible((prev) => !prev)}
+              >
+                {isVisibe ? <EyeOff size={17} /> : <Eye size={17} />}
+              </span>
+            </div>
+            {errors.confirmPassword && (
+              <span className="text-red-600 text-xs">
+                {errors.confirmPassword.message}
+              </span>
+            )}
           </div>
         </div>
         {/* <div className="w-full h-[0.3px] bg-gray-400 z-10" /> */}

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Link } from "react-router";
+// import { Link } from "react-router";
 // import { z } from "zod";
 // import {useForm }from "react-hook-form";
 import { Eye, EyeOff } from "lucide-react";
@@ -67,16 +67,8 @@ const RegisterForm: React.FC = () => {
               {isVisibe ? <EyeOff size={17} /> : <Eye size={17} />}
             </span>
           </div>
-          <div className="flex justify-end mt-1 mb-2">
-            <Link
-              className="flex text-end text-green-400 font-light text-[12px] underline"
-              to=""
-            >
-              Forgotten password?
-            </Link>
-          </div>
         </div>
-        <div className="w-full h-[0.3px] bg-gray-400 z-10" />
+        {/* <div className="w-full h-[0.3px] bg-gray-400 z-10" /> */}
       </div>
       <button
         className="rounded-sm text-white text-[15px] font-semibold mt-2 cursor-pointer w-24 h-10 bg-green-500"

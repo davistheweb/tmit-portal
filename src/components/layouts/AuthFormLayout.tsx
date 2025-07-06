@@ -12,9 +12,9 @@ export const AuthFormLayout: React.FC<IAuthFormLayoutProp> = ({
 }) => {
   return (
     <div className="bg-white flex flex-col justify-center bg-white- px-5 py-5 border shadow rounded-sm max-sm:w-[350px] md:w-[550px] h-fit">
-      <div className="flex justify-center h-[120px]">
+      <div className="flex justify-center h-[100px]">
         <img
-          className="md:w-2/12 max-sm:h-[60%] md:h-[75%] mb-5 text-[13px]"
+          className="md:w-2/12 max-sm:h-[60%] md:h-[75%] md:mb-5 text-[13px]"
           src={schoolLogo}
           alt="Tmit logo"
           draggable="false"

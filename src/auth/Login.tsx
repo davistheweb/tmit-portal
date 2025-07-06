@@ -1,5 +1,7 @@
 import * as React from "react";
 import { Link } from "react-router";
+import { z } from "zod";
+import {useForm }from "react-hook-form";
 import { Eye, EyeOff } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -25,6 +27,10 @@ const LoginBody: React.FC = () => {
 };
 
 const LoginForm: React.FC = () => {
+  const { resister } = useForm();
+  const formSchema = z.object({
+    email: z.string().email("Please input a valid email"),
+  });
   const [isVisibe, setIsVisible] = React.useState<boolean>(false);
   return (
     <form action="" onSubmit={(e: React.FormEvent) => e.preventDefault()}>
@@ -34,7 +40,7 @@ const LoginForm: React.FC = () => {
             Username
           </Label>
           <Input
-            className="border border-gray-300 focus:border-green-500 focus:ring-1 focus:ring-green-500 focus:outline-none"
+            className="borde border-gray-300 focus:border-green-500 focus:ring-1 focus:ring-green-500 focus:outline-none"
             type="text"
             placeholder="Enter username"
             id="username"

@@ -20,6 +20,13 @@ const RegisterForm: React.FC = () => {
     formState: { errors, isSubmitting },
   } = useForm<RegisterFormSchema>({
     resolver: zodResolver(registerFormSchema),
+    defaultValues: {
+      regNum: "",
+      name: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+    },
   });
 
   function SubmitRegisterForm(data: RegisterFormSchema) {

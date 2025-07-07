@@ -20,6 +20,10 @@ const LoginForm: React.FC = () => {
     formState: { errors, isSubmitting },
   } = useForm<LoginFormSchema>({
     resolver: zodResolver(loginFormSchema),
+    defaultValues: {
+      regNum: "",
+      password: "",
+    },
   });
 
   async function SubmitLoginForm(data: LoginFormSchema) {

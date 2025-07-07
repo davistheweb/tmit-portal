@@ -29,7 +29,7 @@ const Sidebar: React.FC<SidebarProps> = ({
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center">
           <img src="/your-logo.png" alt="Logo" className="h-10 w-10 mr-2" />
-          <span className="text-xl font-bold">FUTO Portal</span>
+          <span className="text-xl font-bold">school Portal</span>
         </div>
         {!isMobile && (
           <button

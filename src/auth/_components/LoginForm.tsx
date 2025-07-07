@@ -17,13 +17,13 @@ const LoginForm: React.FC = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<LoginFormSchema>({
     resolver: zodResolver(loginFormSchema),
   });
 
-  function SubmitLoginForm(data: LoginFormSchema) {
-    // const { name } = data;
+  async function SubmitLoginForm(data: LoginFormSchema) {
+    await new Promise((resolve) => setTimeout(resolve, 2000));
     console.log(data);
   }
 
@@ -87,10 +87,15 @@ const LoginForm: React.FC = () => {
         <div className="w-full h-[0.3px] bg-gray-400 z-10" />
       </div>
       <button
-        className="rounded-sm text-white text-[15px] font-semibold mt-4 cursor-pointer w-24 h-10 bg-green-500"
+        className="rounded-sm text-white text-[15px] font-semibold mt-4 cursor-pointer w-24 h-10 bg-green-500 flex items-center justify-center"
         type="submit"
+        disabled={isSubmitting}
       >
-        Login
+        {isSubmitting ? (
+          <div className="animate-spin rounded-full h-5 w-5 border-2 border-white border-t-transparent" />
+        ) : (
+          "Login"
+        )}
       </button>
     </form>
   );

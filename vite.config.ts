@@ -5,6 +5,17 @@ import tailwindcss from "@tailwindcss/vite";
 
 // https://vite.dev/config/
 export default defineConfig({
+  server: {
+    host: "0.0.0.0",
+    port: 5173,
+    strictPort: true,
+    cors: true,
+    hmr: {
+      host: "192.168.0.103",
+      protocol: "ws",
+      clientPort: 3000,
+    },
+  },
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {

@@ -54,7 +54,7 @@ const LoginForm: React.FC = () => {
           )}
         </div>
         <div>
-          <Label htmlFor="passoword" className="mb-4">
+          <Label htmlFor="password" className="mb-4">
             Password
           </Label>
           <div className="relative flex">
@@ -64,7 +64,7 @@ const LoginForm: React.FC = () => {
               } focus:border-green-500 focus:ring-1 focus:ring-green-500 focus:outline-none`}
               type={isVisibe ? "text" : "password"}
               {...register("password")}
-              placeholder="Enter passowrd"
+              placeholder="Enter password"
               id="password"
             />
             <span

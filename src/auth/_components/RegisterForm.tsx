@@ -6,15 +6,20 @@ import {
   type RegisterFormSchema,
 } from "@/lib/validators/registerFormSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Toaster, toast } from "sonner";
-import axios from "axios";
+import {
+  Toaster,
+  //  toast
+} from "sonner";
+// import axios from "axios";
 
 import { Eye, EyeOff } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { AuthFormLayout } from "@/components/layouts";
-import api from "@/api/api";
+// import api from "@/api/api";
+import { SubmitRegisterForm } from "@/api/services/SubmitRegisterForm";
 
+export { type RegisterFormSchema };
 const RegisterForm: React.FC = () => {
   const [isVisibe, setIsVisible] = React.useState<boolean>(false);
 
@@ -33,7 +38,7 @@ const RegisterForm: React.FC = () => {
     },
   });
 
-  const SubmitRegisterForm = async (
+/*   const SubmitRegisterForm = async (
     data: RegisterFormSchema
   ): Promise<void> => {
     const { regNum, name, email, password } = data;
@@ -48,14 +53,17 @@ const RegisterForm: React.FC = () => {
     } catch (err: unknown) {
       if (axios.isAxiosError(err)) {
         console.log(err);
-        const msg = err.response?.data?.message || "Signup failed.";
+        const msg =
+          err.response?.data?.message ||
+          "Registration failed., Something went wrong";
         toast.error(msg);
         console.log(msg);
       } else {
         toast.error("Something went wrong.");
       }
     }
-  };
+  }; */
+
   return (
     <form onSubmit={handleSubmit(SubmitRegisterForm)}>
       <div className="flex flex-col gap-2">

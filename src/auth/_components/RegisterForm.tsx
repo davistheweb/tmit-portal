@@ -6,10 +6,14 @@ import {
   type RegisterFormSchema,
 } from "@/lib/validators/registerFormSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Toaster, toast } from "sonner";
+import axios from "axios";
+
 import { Eye, EyeOff } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { AuthFormLayout } from "@/components/layouts";
+import api from "@/api/api";
 
 const RegisterForm: React.FC = () => {
   const [isVisibe, setIsVisible] = React.useState<boolean>(false);
@@ -29,10 +33,28 @@ const RegisterForm: React.FC = () => {
     },
   });
 
-  function SubmitRegisterForm(data: RegisterFormSchema) {
-    const { name } = data;
-    console.log(name);
-  }
+  const SubmitRegisterForm = async (
+    data: RegisterFormSchema
+  ): Promise<void> => {
+    const { regNum, name, email, password } = data;
+    try {
+      const response = await api.post("/register", {
+        reg_number: regNum,
+        name,
+        email,
+        password,
+      });
+      if (response.status === 201) toast.success(`${response.data.message}`);
+    } catch (err: unknown) {
+      if (axios.isAxiosError(err)) {
+        const msg = err.response?.data?.message || "Signup failed.";
+        toast.error(msg);
+        console.log(msg);
+      } else {
+        toast.error("Something went wrong.");
+      }
+    }
+  };
   return (
     <form onSubmit={handleSubmit(SubmitRegisterForm)}>
       <div className="flex flex-col gap-2">
@@ -172,6 +194,7 @@ export const RegisterBody: React.FC = () => {
         subtitle="Register with your details"
       >
         <RegisterForm />
+        <Toaster richColors position="top-left" />
       </AuthFormLayout>
     </div>
   );

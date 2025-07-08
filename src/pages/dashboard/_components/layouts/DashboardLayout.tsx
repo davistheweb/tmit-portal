@@ -1,12 +1,11 @@
-"use client";
-
 import React, { useState } from "react";
 import Sidebar from "../ui/Sidebar";
 import Header from "../ui/Header";
 import { useIsMobile } from "@/hooks/useIsMobile";
-import { Outlet } from "react-router";
 
-const DashboardLayout: React.FC = () => {
+const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
   const isMobile = useIsMobile();
   const [sidebarOpen, setSidebarOpen] = useState(!isMobile);
   const [profileOpen, setProfileOpen] = useState(false);
@@ -21,14 +20,12 @@ const DashboardLayout: React.FC = () => {
         sidebarOpen={sidebarOpen}
         closeSidebar={closeSidebar}
       />
-
       {isMobile && sidebarOpen && (
         <div
           className="fixed inset-0 bg-black opacity-50 z-10"
           onClick={closeSidebar}
         />
       )}
-
       <div
         className="flex-1 flex flex-col transition-all duration-200 ease-in-out"
         style={{ marginLeft: sidebarOpen && !isMobile ? "16rem" : "0" }}
@@ -39,10 +36,7 @@ const DashboardLayout: React.FC = () => {
           profileOpen={profileOpen}
           setProfileOpen={setProfileOpen}
         />
-
-        <main className="flex-1 overflow-y-auto p-6 bg-gray-50">
-          <Outlet />
-        </main>
+        {children}
       </div>
     </div>
   );

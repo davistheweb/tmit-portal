@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router";
 import { Home, User, CreditCard, LogOut, ChevronLeft } from "lucide-react";
+import { schoolLogo } from "@/assets";
 
 interface SidebarProps {
   isMobile: boolean;
@@ -14,8 +15,16 @@ const Sidebar: React.FC<SidebarProps> = ({
   closeSidebar,
 }) => {
   const navLinks = [
-    { name: "Dashboard", icon: <Home className="w-4 h-4" />, href: "/dashboard" },
-    { name: "Profile", icon: <User className="w-4 h-4" />, href: "/dashboard/profile" },
+    {
+      name: "Dashboard",
+      icon: <Home className="w-4 h-4" />,
+      href: "/dashboard",
+    },
+    {
+      name: "Profile",
+      icon: <User className="w-4 h-4" />,
+      href: "/dashboard/profile",
+    },
     { name: "Fees", icon: <CreditCard className="w-4 h-4" />, href: "/fees" },
     { name: "Sign Out", icon: <LogOut className="w-4 h-4" />, href: "/logout" },
   ];
@@ -28,13 +37,13 @@ const Sidebar: React.FC<SidebarProps> = ({
     >
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center">
-          <img src="/your-logo.png" alt="Logo" className="h-10 w-10 mr-2" />
-          <span className="text-xl font-bold">school Portal</span>
+          <img src={schoolLogo} alt="Logo" className="h-16 w-16 mr-2" />
+          <span className="text-xl font-bold">TMIT</span>
         </div>
         {!isMobile && (
           <button
             onClick={closeSidebar}
-            className="text-gray-600 hover:text-gray-800"
+            className="text-gray-600 hover:text-gray-800 cursor-pointer"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>

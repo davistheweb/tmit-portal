@@ -1,6 +1,7 @@
 import React from "react";
 import { Menu, X, Bell } from "lucide-react";
 import ProfileDropdown from "./ProfileDropdown";
+import { schoolLogo } from "@/assets";
 
 interface HeaderProps {
   sidebarOpen: boolean;
@@ -17,12 +18,30 @@ const Header: React.FC<HeaderProps> = ({
 }) => {
   return (
     <header className="flex items-center justify-between px-4 py-3 border-b bg-white shadow-sm relative">
-      <button onClick={toggleSidebar} className="text-gray-700">
-        {sidebarOpen ? <X /> : <Menu />}
-      </button>
+      <div className="flex items-center gap-4">
+        <button
+          onClick={toggleSidebar}
+          className="text-gray-700 cursor-pointer"
+        >
+          {sidebarOpen ? <X /> : <Menu />}
+        </button>
 
-      <h1 className="text-lg font-semibold">Dashboard</h1>
+        {/* Logo + Text */}
+        <div className="flex items-center gap-2">
+          <img src={schoolLogo} alt="Logo" className="h-8 w-8 object-contain" />
+          <span className="text-xs font-semibold text-gray-800 hidden sm:block">
+            THOMAS MCGETTRICK INSTITUTE OF TECHNOLOGY
+          </span>
+        </div>
 
+        {/* Separator */}
+        <div className="hidden md:block h-6 w-px bg-gray-300" />
+
+        {/* Page Title */}
+        <h1 className="text-base font-semibold hidden md:block">Dashboard</h1>
+      </div>
+
+      {/* Right section: Notifications + Profile */}
       <div className="flex items-center gap-4">
         <button className="relative text-gray-700 hover:text-gray-900">
           <Bell className="w-5 h-5" />

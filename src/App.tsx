@@ -1,7 +1,7 @@
 import * as React from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router";
 import { Login, Register } from "./auth/pages";
-import DashboardLayout from "./pages/dashboard/_components/layouts/DashboardLayout";
+import { Dashboard } from "@/pages/dashboard/Dashboard";
 import { Index } from "./pages/dashboard/Index";
 import { Profile } from "./pages/dashboard/Profile";
 
@@ -15,7 +15,7 @@ const App: React.FC = () => {
             <Route path="/auth/login" element={<Login />} />
             <Route path="/auth/register" element={<Register />} />
           </Route>
-          <Route path="/dashboard" element={<DashboardLayout />}>
+          <Route path="/dashboard" element={<Dashboard />}>
             <Route index element={<Index />} />
             <Route path="profile" element={<Profile />} />
           </Route>

@@ -4,7 +4,7 @@ import api from "../api";
 import { type RegisterFormSchema } from "@/auth/_components/RegisterForm";
 
 export const SubmitRegisterForm = async (
-  data: RegisterFormSchema
+  data: RegisterFormSchema,
 ): Promise<void> => {
   const { regNum, name, email, password } = data;
   try {

@@ -38,7 +38,7 @@ const RegisterForm: React.FC = () => {
     },
   });
 
-/*   const SubmitRegisterForm = async (
+  /*   const SubmitRegisterForm = async (
     data: RegisterFormSchema
   ): Promise<void> => {
     const { regNum, name, email, password } = data;

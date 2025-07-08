@@ -18,10 +18,22 @@ import { Label } from "@/components/ui/label";
 import { AuthFormLayout } from "@/components/layouts";
 // import api from "@/api/api";
 import { SubmitRegisterForm } from "@/api/services/SubmitRegisterForm";
+// import { boolean } from "zod";
 
 export { type RegisterFormSchema };
 const RegisterForm: React.FC = () => {
-  const [isVisibe, setIsVisible] = React.useState<boolean>(false);
+
+  const [passwordIsVisibe, setPasswordIsVisible] =
+    React.useState<boolean>(false);
+    
+  const [confirmPasswordIsVisible, setConfirmPasswordIsVisible] =
+    React.useState<boolean>(false);
+
+  const tooglePasswordVisibility = (): void =>
+    setPasswordIsVisible((prev) => !prev);
+
+  const toogleConfirmPasswordVisibility = (): void =>
+    setConfirmPasswordIsVisible((prev) => !prev);
 
   const {
     register,
@@ -133,16 +145,16 @@ const RegisterForm: React.FC = () => {
               className={`border ${
                 errors.password ? "border-red-300" : "border-gray-300"
               } focus:border-green-500 focus:ring-1 focus:ring-green-500 focus:outline-none`}
-              type={isVisibe ? "text" : "password"}
+              type={passwordIsVisibe ? "text" : "password"}
               {...register("password")}
               placeholder="Enter password"
               id="password"
             />
             <span
               className="absolute right-2 top-2.5 cursor-pointer"
-              onClick={(): void => setIsVisible((prev) => !prev)}
+              onClick={tooglePasswordVisibility}
             >
-              {isVisibe ? <EyeOff size={17} /> : <Eye size={17} />}
+              {passwordIsVisibe ? <EyeOff size={17} /> : <Eye size={17} />}
             </span>
           </div>
           {errors.password && (
@@ -160,16 +172,20 @@ const RegisterForm: React.FC = () => {
               className={`border ${
                 errors.confirmPassword ? "border-red-300" : "border-gray-300"
               } focus:border-green-500 focus:ring-1 focus:ring-green-500 focus:outline-none`}
-              type={isVisibe ? "text" : "password"}
+              type={confirmPasswordIsVisible ? "text" : "password"}
               {...register("confirmPassword")}
               placeholder="Confirm password"
               id="confirm password"
             />
             <span
               className="absolute right-2 top-2.5 cursor-pointer"
-              onClick={(): void => setIsVisible((prev) => !prev)}
+              onClick={toogleConfirmPasswordVisibility}
             >
-              {isVisibe ? <EyeOff size={17} /> : <Eye size={17} />}
+              {confirmPasswordIsVisible ? (
+                <EyeOff size={17} />
+              ) : (
+                <Eye size={17} />
+              )}
             </span>
           </div>
           {errors.confirmPassword && (

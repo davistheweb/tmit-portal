@@ -47,6 +47,7 @@ const RegisterForm: React.FC = () => {
       if (response.status === 201) toast.success(`${response.data.message}`);
     } catch (err: unknown) {
       if (axios.isAxiosError(err)) {
+        console.log(err);
         const msg = err.response?.data?.message || "Signup failed.";
         toast.error(msg);
         console.log(msg);
@@ -68,7 +69,7 @@ const RegisterForm: React.FC = () => {
             } focus:border-green-500 focus:ring-1 focus:ring-green-500 focus:outline-none`}
             type="text"
             {...register("regNum")}
-            placeholder="Enter username"
+            placeholder="Enter registration number"
             id="regNum"
           />
           {errors.regNum && (
@@ -116,7 +117,7 @@ const RegisterForm: React.FC = () => {
           )}
         </div>
         <div>
-          <Label htmlFor="passoword" className="mb-1">
+          <Label htmlFor="password" className="mb-1">
             Password
           </Label>
           <div className="relative flex">
@@ -126,7 +127,7 @@ const RegisterForm: React.FC = () => {
               } focus:border-green-500 focus:ring-1 focus:ring-green-500 focus:outline-none`}
               type={isVisibe ? "text" : "password"}
               {...register("password")}
-              placeholder="Enter passowrd"
+              placeholder="Enter password"
               id="password"
             />
             <span

@@ -122,4 +122,15 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+  .input {
+    @apply border border-gray-300 rounded-lg p-2 w-full focus:outline-none focus:ring-1 focus:ring-green-500;
+  }
+
+  .label {
+    @apply block text-sm font-medium text-gray-700 mb-1;
+  }
+
+  .error {
+    @apply text-red-500 text-xs mt-1;
+  }
 }

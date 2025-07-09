@@ -7,7 +7,7 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const isMobile = useIsMobile();
-  const [sidebarOpen, setSidebarOpen] = useState(!isMobile);
+  const [sidebarOpen, setSidebarOpen] = useState(isMobile);
   const [profileOpen, setProfileOpen] = useState(false);
 
   const toggleSidebar = () => setSidebarOpen(!sidebarOpen);

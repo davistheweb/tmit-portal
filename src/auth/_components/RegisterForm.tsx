@@ -22,10 +22,9 @@ import { SubmitRegisterForm } from "@/api/services/SubmitRegisterForm";
 
 export { type RegisterFormSchema };
 const RegisterForm: React.FC = () => {
-
   const [passwordIsVisibe, setPasswordIsVisible] =
     React.useState<boolean>(false);
-    
+
   const [confirmPasswordIsVisible, setConfirmPasswordIsVisible] =
     React.useState<boolean>(false);
 

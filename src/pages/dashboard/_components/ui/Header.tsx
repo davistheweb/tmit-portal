@@ -1,7 +1,7 @@
 import React from "react";
 import { Menu, X, Bell } from "lucide-react";
 import ProfileDropdown from "./ProfileDropdown";
-import { schoolLogo } from "@/assets";
+import { avatarImg, schoolLogo } from "@/assets";
 
 interface HeaderProps {
   sidebarOpen: boolean;
@@ -43,18 +43,18 @@ const Header: React.FC<HeaderProps> = ({
 
       {/* Right section: Notifications + Profile */}
       <div className="flex items-center gap-4">
-        <button className="relative text-gray-700 hover:text-gray-900">
+        <button className="relative text-gray-700 hover:text-gray-900 cursor-pointer">
           <Bell className="w-5 h-5" />
           <span className="absolute top-0 right-0 block h-2 w-2 rounded-full bg-red-500"></span>
         </button>
 
-        <div className="relative">
+        <div className="relative cursor-pointer">
           <button
             onClick={() => setProfileOpen(!profileOpen)}
-            className="block rounded-full overflow-hidden border-2 border-gray-300 focus:outline-none"
+            className="block rounded-full overflow-hidden border-2 border-gray-300 focus:outline-none cursor-pointer"
           >
             <img
-              src="/avatar.jpg"
+              src={avatarImg}
               alt="User Avatar"
               className="h-8 w-8 object-cover"
             />

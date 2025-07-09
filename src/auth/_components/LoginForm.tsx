@@ -1,6 +1,7 @@
 import * as React from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { useForm } from "react-hook-form";
+import { Toaster, toast } from "sonner";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   loginFormSchema,
@@ -13,7 +14,7 @@ import { AuthFormLayout } from "@/components/layouts";
 
 const LoginForm: React.FC = () => {
   const [isVisibe, setIsVisible] = React.useState<boolean>(false);
-
+  const naviagte = useNavigate();
   const {
     register,
     handleSubmit,
@@ -26,10 +27,19 @@ const LoginForm: React.FC = () => {
     },
   });
 
-  async function SubmitLoginForm(data: LoginFormSchema) {
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    console.log(data);
-  }
+    async function SubmitLoginForm(data: LoginFormSchema) {
+      await new Promise((resolve) =>
+        setTimeout(() => {
+          toast.success("Login successful, redirecting");
+          setTimeout(() => {
+            naviagte("/dashboard");
+            resolve(null);
+          }, 4000);
+          
+        }, 2000)
+      );
+      console.log(data);
+    }
 
   return (
     <form onSubmit={handleSubmit(SubmitLoginForm)}>
@@ -112,6 +122,7 @@ const LoginBody: React.FC = () => {
       subtitle="Login to access the student portal"
     >
       <LoginForm />
+      <Toaster richColors position="top-left" />
     </AuthFormLayout>
   );
 };

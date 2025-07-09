@@ -25,8 +25,8 @@ const Sidebar: React.FC<SidebarProps> = ({
       icon: <User className="w-4 h-4" />,
       href: "/dashboard/profile",
     },
-    { name: "Fees", icon: <CreditCard className="w-4 h-4" />, href: "/fees" },
-    { name: "Sign Out", icon: <LogOut className="w-4 h-4" />, href: "/logout" },
+    { name: "Fees", icon: <CreditCard className="w-4 h-4" />, href: "fees" },
+    { name: "Sign Out", icon: <LogOut className="w-4 h-4" />, href: "/" },
   ];
 
   return (

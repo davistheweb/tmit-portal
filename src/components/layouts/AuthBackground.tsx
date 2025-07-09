@@ -13,7 +13,7 @@ export const AuthBackground: React.FC<{ children?: React.ReactNode }> = ({
       <div className="absolute right-0 top-0 hidden md:flex">
         <div>
           <img
-            className="select-none"
+            className="select-none text-xs text-white"
             draggable={false}
             src={authBackground}
             alt="auth background"

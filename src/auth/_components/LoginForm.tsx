@@ -11,10 +11,14 @@ import { Eye, EyeOff } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { AuthFormLayout } from "@/components/layouts";
+import { LoginStudent } from "@/api/services/LoginStudent";
+import { useAuth } from "@/hooks/useAuth";
 
 const LoginForm: React.FC = () => {
   const [isVisibe, setIsVisible] = React.useState<boolean>(false);
-  const naviagte = useNavigate();
+  const navigate = useNavigate();
+  const { login } = useAuth();
+
   const {
     register,
     handleSubmit,
@@ -22,44 +26,52 @@ const LoginForm: React.FC = () => {
   } = useForm<LoginFormSchema>({
     resolver: zodResolver(loginFormSchema),
     defaultValues: {
-      regNum: "",
+      email: "",
       password: "",
     },
   });
 
-    async function SubmitLoginForm(data: LoginFormSchema) {
-      await new Promise((resolve) =>
-        setTimeout(() => {
-          toast.success("Login successful, redirecting");
-          setTimeout(() => {
-            naviagte("/dashboard");
-            resolve(null);
-          }, 4000);
-          
-        }, 2000)
-      );
-      console.log(data);
+  const submitStudentLogin = async (data: LoginFormSchema) => {
+    const result = await LoginStudent(data);
+
+    if (typeof result === "string") {
+      toast.error(result);
+    } else if (result && typeof result === "object") {
+      const { token, student } = result as {
+        token: string;
+        student: {
+          id: number;
+          name: string;
+          email: string;
+          reg_number: string;
+        };
+      };
+
+      login(token, student);
+      toast.success("Login successful, redirecting");
+      setTimeout(() => navigate("/dashboard/onboarding"), 1500);
     }
+  };
 
   return (
-    <form onSubmit={handleSubmit(SubmitLoginForm)}>
+    <form onSubmit={handleSubmit(submitStudentLogin)}>
       <div className="flex flex-col gap-8">
         <div>
           <Label htmlFor="regNum" className="mb-4">
-            Registration Number
+            Email
           </Label>
           <Input
             className={`border ${
-              errors.regNum ? "border-red-300" : "border-gray-300"
+              errors.email ? "border-red-300" : "border-gray-300"
             } focus:border-green-500 focus:ring-1 focus:ring-green-500 focus:outline-none`}
             type="text"
-            {...register("regNum")}
-            placeholder="Enter registration number"
+            {...register("email")}
+            placeholder="Enter email"
             id="regNum"
           />
-          {errors.regNum && (
+          {errors.email && (
             <span className="text-red-600 text-xs select-none">
-              {errors.regNum.message}
+              {errors.email.message}
             </span>
           )}
         </div>
@@ -100,17 +112,28 @@ const LoginForm: React.FC = () => {
         </div>
         <div className="w-full h-[0.3px] bg-gray-400 z-10" />
       </div>
-      <button
-        className="rounded-sm text-white text-[15px] font-semibold mt-4 cursor-pointer w-24 h-10 bg-green-500 flex items-center justify-center"
-        type="submit"
-        disabled={isSubmitting}
-      >
-        {isSubmitting ? (
-          <div className="animate-spin rounded-full h-5 w-5 border-2 border-white border-t-transparent" />
-        ) : (
-          "Login"
-        )}
-      </button>
+      <div className="flex justify-between items-center mt-4">
+        <button
+          className="rounded-sm text-white text-[15px] font-semibold cursor-pointer w-24 h-10 bg-green-500 flex items-center justify-center"
+          type="submit"
+          disabled={isSubmitting}
+        >
+          {isSubmitting ? (
+            <div className="animate-spin rounded-full h-5 w-5 border-2 border-white border-t-transparent" />
+          ) : (
+            "Login"
+          )}
+        </button>
+        <div className="flex space-x-2 items-center">
+          <span className="text-xs">New Student?</span>
+          <Link
+            to="/auth/register"
+            className="font-boldtext-[15px] cursor-pointer underline decoration-1 decoration-green-500"
+          >
+            Register account
+          </Link>
+        </div>
+      </div>
     </form>
   );
 };

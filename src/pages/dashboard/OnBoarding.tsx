@@ -1,8 +1,10 @@
-// ProfileForm.tsx
+// components/OnBoarding.tsx
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import { profileSchema } from "@/lib/validators/profileSchema";
+import type { z } from "zod";
+import { toast } from "sonner";
+import { submitStudentOnboarding } from "@/api/services/submitStudentOnboarding";
 
 type ProfileFormData = z.infer<typeof profileSchema>;
 
@@ -10,85 +12,98 @@ export default function OnBoarding() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<ProfileFormData>({
     resolver: zodResolver(profileSchema),
   });
 
-  const onSubmit = (data: ProfileFormData) => {
-    console.log(data);
+  const onSubmit = async (data: ProfileFormData) => {
+    try {
+      const res = await submitStudentOnboarding(data);
+      toast.success("Profile saved successfully!");
+      console.log(res.data);
+    } catch (err) {
+      console.error("Error submitting profile:", err);
+      toast.error(
+        "Failed to save profile. Please note the service is under development"
+      );
+    }
   };
 
-  const baseInputClass = "input w-full";
-  const errorInputClass = "border-red-500";
+  const baseCls = "input w-full border rounded px-3 py-2";
+  const errCls = "border-red-500";
+
+  const renderError = (error: unknown) =>
+    typeof error === "object" &&
+    error !== null &&
+    "message" in error &&
+    typeof error.message === "string" ? (
+      <p className="text-red-600 text-sm">{error.message}</p>
+    ) : null;
 
   return (
-    <div>
-        <h1 className="text-center">Welcome student, Pls fill the application form</h1>
+    <div className="max-w-4xl mx-auto p-6 space-y-6">
+      <h1 className="text-2xl font-semibold text-center">
+        Complete Your Student Profile
+      </h1>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="space-y-6 max-w-4xl mx-auto px-4 py-6"
+        encType="multipart/form-data"
+        className="space-y-6"
       >
-        {/* Name Fields */}
+        {/* Full Name */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <div>
             <label className="label">Surname</label>
             <input
+              type="text"
               {...register("firstName")}
-              className={`${baseInputClass} ${
-                errors.firstName ? errorInputClass : ""
-              }`}
+              className={`${baseCls} ${errors.firstName ? errCls : ""}`}
             />
-            {errors.firstName && (
-              <p className="error">{errors.firstName.message}</p>
-            )}
+            {renderError(errors.firstName)}
           </div>
           <div>
             <label className="label">Middle Name</label>
-            <input {...register("middleName")} className={baseInputClass} />
+            <input
+              type="text"
+              {...register("middleName")}
+              className={`${baseCls} ${errors.middleName ? errCls : ""}`}
+            />
+            {renderError(errors.middleName)}
           </div>
           <div>
             <label className="label">Last Name</label>
             <input
+              type="text"
               {...register("lastName")}
-              className={`${baseInputClass} ${
-                errors.lastName ? errorInputClass : ""
-              }`}
+              className={`${baseCls} ${errors.lastName ? errCls : ""}`}
             />
-            {errors.lastName && (
-              <p className="error">{errors.lastName.message}</p>
-            )}
+            {renderError(errors.lastName)}
           </div>
         </div>
 
-        {/* Gender and DOB */}
+        {/* Gender & DOB */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className="label">Gender</label>
             <select
               {...register("gender")}
-              className={`${baseInputClass} ${
-                errors.gender ? errorInputClass : ""
-              }`}
+              className={`${baseCls} ${errors.gender ? errCls : ""}`}
             >
               <option value="">Select</option>
-              <option value="Male">Male</option>
-              <option value="Female">Female</option>
+              <option>Male</option>
+              <option>Female</option>
             </select>
-            {errors.gender && <p className="error">{errors.gender.message}</p>}
+            {renderError(errors.gender)}
           </div>
           <div>
             <label className="label">Date of Birth</label>
             <input
               type="date"
               {...register("dateOfBirth")}
-              className={`${baseInputClass} ${
-                errors.dateOfBirth ? errorInputClass : ""
-              }`}
+              className={`${baseCls} ${errors.dateOfBirth ? errCls : ""}`}
             />
-            {errors.dateOfBirth && (
-              <p className="error">{errors.dateOfBirth.message}</p>
-            )}
+            {renderError(errors.dateOfBirth)}
           </div>
         </div>
 
@@ -98,35 +113,25 @@ export default function OnBoarding() {
             <label className="label">Country</label>
             <input
               {...register("country")}
-              className={`${baseInputClass} ${
-                errors.country ? errorInputClass : ""
-              }`}
+              className={`${baseCls} ${errors.country ? errCls : ""}`}
             />
-            {errors.country && (
-              <p className="error">{errors.country.message}</p>
-            )}
+            {renderError(errors.country)}
           </div>
           <div>
             <label className="label">State of Origin</label>
             <input
               {...register("stateOfOrigin")}
-              className={`${baseInputClass} ${
-                errors.stateOfOrigin ? errorInputClass : ""
-              }`}
+              className={`${baseCls} ${errors.stateOfOrigin ? errCls : ""}`}
             />
-            {errors.stateOfOrigin && (
-              <p className="error">{errors.stateOfOrigin.message}</p>
-            )}
+            {renderError(errors.stateOfOrigin)}
           </div>
           <div>
             <label className="label">LGA</label>
             <input
               {...register("lga")}
-              className={`${baseInputClass} ${
-                errors.lga ? errorInputClass : ""
-              }`}
+              className={`${baseCls} ${errors.lga ? errCls : ""}`}
             />
-            {errors.lga && <p className="error">{errors.lga.message}</p>}
+            {renderError(errors.lga)}
           </div>
         </div>
 
@@ -134,13 +139,9 @@ export default function OnBoarding() {
           <label className="label">Home Town</label>
           <input
             {...register("homeTown")}
-            className={`${baseInputClass} ${
-              errors.homeTown ? errorInputClass : ""
-            }`}
+            className={`${baseCls} ${errors.homeTown ? errCls : ""}`}
           />
-          {errors.homeTown && (
-            <p className="error">{errors.homeTown.message}</p>
-          )}
+          {renderError(errors.homeTown)}
         </div>
 
         {/* Contact Info */}
@@ -149,15 +150,17 @@ export default function OnBoarding() {
             <label className="label">Phone Number</label>
             <input
               {...register("phone")}
-              className={`${baseInputClass} ${
-                errors.phone ? errorInputClass : ""
-              }`}
+              className={`${baseCls} ${errors.phone ? errCls : ""}`}
             />
-            {errors.phone && <p className="error">{errors.phone.message}</p>}
+            {renderError(errors.phone)}
           </div>
           <div>
             <label className="label">NIN</label>
-            <input {...register("nin")} className={baseInputClass} />
+            <input
+              {...register("nin")}
+              className={`${baseCls} ${errors.nin ? errCls : ""}`}
+            />
+            {renderError(errors.nin)}
           </div>
         </div>
 
@@ -165,11 +168,9 @@ export default function OnBoarding() {
           <label className="label">Contact Address</label>
           <input
             {...register("address")}
-            className={`${baseInputClass} ${
-              errors.address ? errorInputClass : ""
-            }`}
+            className={`${baseCls} ${errors.address ? errCls : ""}`}
           />
-          {errors.address && <p className="error">{errors.address.message}</p>}
+          {renderError(errors.address)}
         </div>
 
         {/* Medical Info */}
@@ -178,69 +179,95 @@ export default function OnBoarding() {
             <label className="label">Blood Group</label>
             <select
               {...register("bloodGroup")}
-              className={`${baseInputClass} ${
-                errors.bloodGroup ? errorInputClass : ""
-              }`}
+              className={`${baseCls} ${errors.bloodGroup ? errCls : ""}`}
             >
               <option value="">Select</option>
-              <option>O+</option>
-              <option>O-</option>
-              <option>A+</option>
-              <option>A-</option>
-              <option>B+</option>
-              <option>B-</option>
-              <option>AB+</option>
-              <option>AB-</option>
+              {["O+", "O-", "A+", "A-", "B+", "B-", "AB+", "AB-"].map((opt) => (
+                <option key={opt}>{opt}</option>
+              ))}
             </select>
-            {errors.bloodGroup && (
-              <p className="error">{errors.bloodGroup.message}</p>
-            )}
+            {renderError(errors.bloodGroup)}
           </div>
           <div>
             <label className="label">Genotype</label>
             <select
               {...register("genotype")}
-              className={`${baseInputClass} ${
-                errors.genotype ? errorInputClass : ""
-              }`}
+              className={`${baseCls} ${errors.genotype ? errCls : ""}`}
             >
               <option value="">Select</option>
-              <option>AA</option>
-              <option>AS</option>
-              <option>SS</option>
-              <option>AC</option>
-              <option>SC</option>
+              {["AA", "AS", "SS", "AC", "SC"].map((opt) => (
+                <option key={opt}>{opt}</option>
+              ))}
             </select>
-            {errors.genotype && (
-              <p className="error">{errors.genotype.message}</p>
-            )}
+            {renderError(errors.genotype)}
           </div>
           <div>
             <label className="label">Religion</label>
             <select
               {...register("religion")}
-              className={`${baseInputClass} ${
-                errors.religion ? errorInputClass : ""
-              }`}
+              className={`${baseCls} ${errors.religion ? errCls : ""}`}
             >
               <option value="">Select</option>
-              <option>Christianity</option>
-              <option>Islam</option>
-              <option>Other</option>
+              {["Christianity", "Islam", "Other"].map((opt) => (
+                <option key={opt}>{opt}</option>
+              ))}
             </select>
-            {errors.religion && (
-              <p className="error">{errors.religion.message}</p>
-            )}
+            {renderError(errors.religion)}
           </div>
         </div>
 
-        {/* Submit */}
+        {/* Academic Info */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label className="label">Department</label>
+            <input
+              {...register("department")}
+              className={`${baseCls} ${errors.department ? errCls : ""}`}
+            />
+            {renderError(errors.department)}
+          </div>
+          <div>
+            <label className="label">Year</label>
+            <input
+              type="number"
+              {...register("year", { valueAsNumber: true })}
+              className={`${baseCls} ${errors.year ? errCls : ""}`}
+            />
+            {renderError(errors.year)}
+          </div>
+        </div>
+
+        {/* Files */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label className="label">Passport Photo</label>
+            <input
+              type="file"
+              accept="image/*"
+              {...register("image")}
+              className={`${baseCls} ${errors.image ? errCls : ""}`}
+            />
+            {renderError(errors.image)}
+          </div>
+          <div>
+            <label className="label">Certifications</label>
+            <input
+              type="file"
+              accept=".pdf,.doc,.docx"
+              {...register("certifications")}
+              className={`${baseCls} ${errors.certifications ? errCls : ""}`}
+            />
+            {renderError(errors.certifications)}
+          </div>
+        </div>
+
         <div className="text-center pt-4">
           <button
             type="submit"
-            className="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-6 rounded-lg transition"
+            disabled={isSubmitting}
+            className="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-6 rounded-lg transition disabled:opacity-50"
           >
-            Save & Continue
+            {isSubmitting ? "Saving..." : "Save & Continue"}
           </button>
         </div>
       </form>

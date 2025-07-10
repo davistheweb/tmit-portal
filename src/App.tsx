@@ -8,6 +8,7 @@ import Fees from "@/pages/dashboard/Fees";
 import ChangePassword from "@/pages/dashboard/ChangePassword";
 import OnBoarding from "@/pages/dashboard/OnBoarding";
 import IndexPage from "./IndexPage";
+import { ProtectedRoute } from "./routes/ProtectedRoute";
 
 const App: React.FC = () => {
   return (
@@ -19,7 +20,14 @@ const App: React.FC = () => {
             <Route path="/auth/login" element={<Login />} />
             <Route path="/auth/register" element={<Register />} />
           </Route>
-          <Route path="/dashboard" element={<Dashboard />}>
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          >
             <Route index element={<Index />} />
             <Route path="profile" element={<Profile />} />
             <Route path="fees" element={<Fees />} />

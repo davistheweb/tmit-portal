@@ -1,24 +1,19 @@
 import * as React from "react";
-// import { Link } from "react-router";
+import { useNavigate } from "react-router";
 import { useForm } from "react-hook-form";
 import {
   registerFormSchema,
   type RegisterFormSchema,
 } from "@/lib/validators/registerFormSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  Toaster,
-  //  toast
-} from "sonner";
+import { Toaster, toast } from "sonner";
 // import axios from "axios";
 
 import { Eye, EyeOff } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { AuthFormLayout } from "@/components/layouts";
-// import api from "@/api/api";
-import { SubmitRegisterForm } from "@/api/services/SubmitRegisterForm";
-// import { boolean } from "zod";
+import { RegisterStudent } from "@/api/services/RegisterStudent";
 
 export { type RegisterFormSchema };
 const RegisterForm: React.FC = () => {
@@ -33,6 +28,8 @@ const RegisterForm: React.FC = () => {
 
   const toogleConfirmPasswordVisibility = (): void =>
     setConfirmPasswordIsVisible((prev) => !prev);
+
+  const navigate = useNavigate();
 
   const {
     register,
@@ -49,34 +46,21 @@ const RegisterForm: React.FC = () => {
     },
   });
 
-  /*   const SubmitRegisterForm = async (
-    data: RegisterFormSchema
-  ): Promise<void> => {
-    const { regNum, name, email, password } = data;
-    try {
-      const response = await api.post("/register", {
-        reg_number: regNum,
-        name,
-        email,
-        password,
-      });
-      if (response.status === 201) toast.success(`${response.data.message}`);
-    } catch (err: unknown) {
-      if (axios.isAxiosError(err)) {
-        console.log(err);
-        const msg =
-          err.response?.data?.message ||
-          "Registration failed., Something went wrong";
-        toast.error(msg);
-        console.log(msg);
-      } else {
-        toast.error("Something went wrong.");
-      }
+  const SubmitRegistration = async (data: RegisterFormSchema) => {
+    const result = await RegisterStudent(data);
+
+    if (Array.isArray(result)) {
+      console.log(result);
+
+      result.forEach((msg) => toast.error(msg));
+    } else {
+      toast.success(result.message || "Registration successful!");
+      setTimeout(() => navigate("/auth/login"), 3000);
     }
-  }; */
+  };
 
   return (
-    <form onSubmit={handleSubmit(SubmitRegisterForm)}>
+    <form onSubmit={handleSubmit(SubmitRegistration)}>
       <div className="flex flex-col gap-2">
         <div>
           <Label htmlFor="regNum" className="mb-1">
@@ -88,7 +72,7 @@ const RegisterForm: React.FC = () => {
             } focus:border-green-500 focus:ring-1 focus:ring-green-500 focus:outline-none`}
             type="text"
             {...register("regNum")}
-            placeholder="Enter registration number"
+            placeholder="Reg num: EG:TMIT/CSC/01/0001"
             id="regNum"
           />
           {errors.regNum && (
@@ -206,6 +190,17 @@ const RegisterForm: React.FC = () => {
           "Register"
         )}
       </button>
+      {/* <div className="mt-1 flex flex-col justify-end w-full">
+        <span>
+          <p className="text-xs">Already registered</p>
+          <Link
+            to="/auth/login"
+            className="text-xs underline decoration-green-500"
+          >
+            Login
+          </Link>
+        </span>
+      </div> */}
     </form>
   );
 };

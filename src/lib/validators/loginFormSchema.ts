@@ -1,7 +1,10 @@
 import { z } from "zod";
 
 export const loginFormSchema = z.object({
-  regNum: z.string().nonempty("Reg number is required"),
+  email: z
+    .string()
+    .nonempty("Email is required")
+    .email({ message: "Please enter a valid email" }),
   password: z.string().nonempty("Password is required"),
 });
 export type LoginFormSchema = z.infer<typeof loginFormSchema>;

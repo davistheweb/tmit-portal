@@ -16,6 +16,40 @@ import { AuthFormLayout } from "@/components/layouts";
 import { RegisterStudent } from "@/api/services/RegisterStudent";
 
 export { type RegisterFormSchema };
+
+// Faculties and departments data
+const faculties = [
+  {
+    name: "School of Management and Financial Studies",
+    abbreviation: "SMFS",
+    departments: [
+      { name: "Accountancy", abbreviation: "ACT" },
+      { name: "Business Administration and Management", abbreviation: "BAM" },
+      { name: "Public Administration", abbreviation: "PAD" },
+    ],
+  },
+  {
+    name: "School of Health Technology",
+    abbreviation: "SHT",
+    departments: [
+      { name: "General Nursing Science", abbreviation: "GNS" },
+      { name: "Community Health", abbreviation: "CHT" },
+      { name: "Medical Laboratory Technology", abbreviation: "MLT" },
+      { name: "Health Information Management", abbreviation: "HIM" },
+    ],
+  },
+  {
+    name: "School of Engineering Technology",
+    abbreviation: "SET",
+    departments: [
+      { name: "Electrical /Electronics Engineering", abbreviation: "EET" },
+      { name: "Computer Engineering Technology", abbreviation: "CET" },
+      { name: "Computer Science", abbreviation: "CMS" },
+      { name: "Statistics", abbreviation: "STA" },
+    ],
+  },
+];
+
 const RegisterForm: React.FC = () => {
   const [passwordIsVisibe, setPasswordIsVisible] =
     React.useState<boolean>(false);
@@ -43,6 +77,7 @@ const RegisterForm: React.FC = () => {
       email: "",
       password: "",
       confirmPassword: "",
+      department: "", // Added
     },
   });
 
@@ -81,6 +116,51 @@ const RegisterForm: React.FC = () => {
             </span>
           )}
         </div>
+        <div>
+          <Label htmlFor="department" className="mb-1">
+            Department
+          </Label>
+          <div className="relative w-full">
+            <select
+              id="department"
+              {...register("department")}
+              className={`w-full rounded-sm px-3 py-2 bg-white border text-sm ${
+                errors.department ? "border-red-300" : "border-gray-300"
+              } focus:border-green-500 focus:ring-1 focus:ring-green-500 focus:outline-none appearance-none`}
+            >
+              <option value="">Select department</option>
+              {faculties.map((faculty) => (
+                <optgroup key={faculty.abbreviation} label={faculty.name}>
+                  {faculty.departments.map((dept) => (
+                    <option key={dept.abbreviation} value={dept.abbreviation}>
+                      {dept.name} ({dept.abbreviation})
+                    </option>
+                  ))}
+                </optgroup>
+              ))}
+            </select>
+            <div className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-gray-500">
+              <svg
+                className="h-4 w-4"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 011.08 1.04l-4.25 4.25a.75.75 0 01-1.08 0L5.25 8.27a.75.75 0 01-.02-1.06z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </div>
+          </div>
+          {errors.department && (
+            <span className="text-red-600 text-xs select-none">
+              {errors.department.message}
+            </span>
+          )}
+        </div>
+
         <div>
           <Label htmlFor="name" className="mb-1">
             Name
@@ -147,7 +227,7 @@ const RegisterForm: React.FC = () => {
           )}
         </div>
         <div>
-          <Label htmlFor="confirm passoword" className="mb-1">
+          <Label htmlFor="confirm password" className="mb-1">
             Confirm Password
           </Label>
           <div className="relative flex">
@@ -177,8 +257,8 @@ const RegisterForm: React.FC = () => {
             </span>
           )}
         </div>
-        {/* <div className="w-full h-[0.3px] bg-gray-400 z-10" /> */}
       </div>
+
       <button
         className="rounded-sm text-white text-[15px] font-semibold mt-4 cursor-pointer w-24 h-10 bg-green-500 flex items-center justify-center"
         type="submit"
@@ -190,17 +270,6 @@ const RegisterForm: React.FC = () => {
           "Register"
         )}
       </button>
-      {/* <div className="mt-1 flex flex-col justify-end w-full">
-        <span>
-          <p className="text-xs">Already registered</p>
-          <Link
-            to="/auth/login"
-            className="text-xs underline decoration-green-500"
-          >
-            Login
-          </Link>
-        </span>
-      </div> */}
     </form>
   );
 };

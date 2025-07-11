@@ -20,17 +20,23 @@ export default function OnBoarding() {
   const onSubmit = async (data: ProfileFormData) => {
     try {
       console.log(data);
-      
+
       const res = await submitStudentOnboarding(data);
-      if(res.status == 200) toast.success("Profile saved successfully!");
-      toast.success("Profile saved");
-      console.log(res.data);
-    } catch (err) {
-      console.error("Error submitting profile:", err);
-      toast.error(
-        "Failed to save profile. Please note the service is under development"
-      );
+      if (res.status == 200) toast.success(res.data.message);
+      // toast.success("Profile saved");
+      // console.log(res.data);
+    } catch (err: any) {
+      if (err.response) {
+        console.error("API Error:", err.response.data);
+        toast.error(
+          `Error: ${err.response.data.message || "Something went wrong"}`
+        );
+      } else {
+        console.error("Unexpected Error:", err);
+        toast.error("Something went wrong. Please try again.");
+      }
     }
+    
   };
 
   const baseCls = "input w-full border rounded px-3 py-2";
@@ -94,8 +100,8 @@ export default function OnBoarding() {
               className={`${baseCls} ${errors.gender ? errCls : ""}`}
             >
               <option value="">Select</option>
-              <option>Male</option>
-              <option>Female</option>
+              <option value="male">male</option>
+              <option value="female">female</option>
             </select>
             {renderError(errors.gender)}
           </div>
@@ -270,7 +276,14 @@ export default function OnBoarding() {
             disabled={isSubmitting}
             className="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-6 rounded-lg transition disabled:opacity-50 cursor-pointer"
           >
-            {isSubmitting ? "Saving..." : "Save & Continue"}
+            {isSubmitting ? (
+              <div className="flex">
+                <span>Submitting</span>{" "}
+                <div className="animate-spin rounded-full h-5 w-5 border-2 border-white border-t-transparent" />
+              </div>
+            ) : (
+              "Save & Continue"
+            )}
           </button>
         </div>
       </form>

@@ -4,7 +4,7 @@ export const profileSchema = z.object({
   firstName: z.string().nonempty("Surname is required"),
   middleName: z.string().nonempty("Middle name is required"),
   lastName: z.string().nonempty("Last name is required"),
-  gender: z.enum(["Male", "Female"], { required_error: "Gender is required" }),
+  gender: z.enum(["male", "female"], { required_error: "Gender is required" }),
   dateOfBirth: z.string().nonempty("Date of birth is required"),
   country: z.string().nonempty("Country is required"),
   stateOfOrigin: z.string().nonempty("State of origin is required"),

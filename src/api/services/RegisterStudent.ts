@@ -12,6 +12,7 @@ export const RegisterStudent = async (
   try {
     const response = await api.post("/register", {
       reg_number: data.regNum,
+      department: data.department,
       name: data.name,
       email: data.email,
       password: data.password,

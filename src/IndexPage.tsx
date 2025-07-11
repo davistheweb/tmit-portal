@@ -24,11 +24,13 @@ export default function IndexPage() {
   );
 }
 
-{/* <div className="flex flex-col justify-center items-center h-full gap-5">
+{
+  /* <div className="flex flex-col justify-center items-center h-full gap-5">
   <img src={schoolLogo} alt="schoolLogo" className="w-40" />
   <div className="flex justify-center items-center h-full gap-5">
     <Link to="auth/register">Register</Link>
     <div className="bg-gray-500 h-8 w-1" />
     <Link to="auth/login">Login</Link>
   </div>
-</div>; */}
+</div>; */
+}

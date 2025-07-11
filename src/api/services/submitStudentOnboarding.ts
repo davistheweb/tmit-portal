@@ -24,7 +24,7 @@ export interface ProfileFormData {
 }
 
 export const submitStudentOnboarding = async (
-  data: ProfileFormData
+  data: ProfileFormData,
 ): Promise<AxiosResponse> => {
   const formData = new FormData();
 
@@ -46,7 +46,7 @@ export const submitStudentOnboarding = async (
   formData.append("department", data.department);
   formData.append("year", data.year.toString());
 
-/*   if (data.image instanceof FileList && data.image.length > 0) {
+  /*   if (data.image instanceof FileList && data.image.length > 0) {
     formData.append("image", data.image[0]);
   }
 
@@ -57,14 +57,14 @@ export const submitStudentOnboarding = async (
     formData.append("certifications", data.certifications[0]);
   } */
 
-    if (data.image instanceof File) {
-      formData.append("image", data.image);
-    }
+  if (data.image instanceof File) {
+    formData.append("image", data.image);
+  }
 
-    if (data.certifications instanceof File) {
-      formData.append("certifications", data.certifications);
-    }
-    
+  if (data.certifications instanceof File) {
+    formData.append("certifications", data.certifications);
+  }
+
   return await api.post("/student/profile", formData, {
     headers: { "Content-Type": "multipart/form-data" },
   });

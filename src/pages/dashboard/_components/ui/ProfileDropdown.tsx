@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import { Link } from "react-router";
+import { useStudentProfileDetails } from "@/hooks/useStudentProfileDetails";
 
 interface ProfileDropdownProps {
   open: boolean;
@@ -22,7 +23,33 @@ const ProfileDropdown: React.FC<ProfileDropdownProps> = ({ open, setOpen }) => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [setOpen]);
 
+  const {
+    profile,
+    isLoading,
+    error,
+    // refetch
+  } = useStudentProfileDetails();
+
   if (!open) return null;
+
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center py-12 w-full h-full">
+        <div className="h-10 w-10 border-4 border-green-500 border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    );
+  }
+
+  if (error || !profile) {
+    return (
+      <div className="text-center py-6 text-red-600">
+        {error || "Failed to load student profile."}
+      </div>
+    );
+  }
+
+  const studentProfile = profile.profile;
+  const fullName = `${studentProfile.surname} ${studentProfile.middle_name} ${studentProfile.last_name}`;
 
   return (
     <div
@@ -30,7 +57,7 @@ const ProfileDropdown: React.FC<ProfileDropdownProps> = ({ open, setOpen }) => {
       className="absolute right-0 mt-2 w-72 bg-white border rounded shadow-md z-30"
     >
       <div className="px-4 py-2 text-sm font-bold text-gray-700 border-b">
-        JOSIAH DAVIS CHIMZURUOKE
+        {fullName}
       </div>
       <Link
         to="profile"

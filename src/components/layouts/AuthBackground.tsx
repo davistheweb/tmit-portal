@@ -21,7 +21,7 @@ export const AuthBackground: React.FC<{ children?: React.ReactNode }> = ({
           />
         </div>
       </div>
-      {/* The form will be placed here */}
+      {/* I placed the form here */}
       <div className="md:ml-15 z-10">{children}</div>
     </div>
   );

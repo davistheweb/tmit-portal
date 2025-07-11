@@ -14,41 +14,9 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { AuthFormLayout } from "@/components/layouts";
 import { RegisterStudent } from "@/api/services/RegisterStudent";
+import { faculties } from "@/data";
 
 export { type RegisterFormSchema };
-
-// Faculties and departments data
-const faculties = [
-  {
-    name: "School of Management and Financial Studies",
-    abbreviation: "SMFS",
-    departments: [
-      { name: "Accountancy", abbreviation: "ACT" },
-      { name: "Business Administration and Management", abbreviation: "BAM" },
-      { name: "Public Administration", abbreviation: "PAD" },
-    ],
-  },
-  {
-    name: "School of Health Technology",
-    abbreviation: "SHT",
-    departments: [
-      { name: "General Nursing Science", abbreviation: "GNS" },
-      { name: "Community Health", abbreviation: "CHT" },
-      { name: "Medical Laboratory Technology", abbreviation: "MLT" },
-      { name: "Health Information Management", abbreviation: "HIM" },
-    ],
-  },
-  {
-    name: "School of Engineering Technology",
-    abbreviation: "SET",
-    departments: [
-      { name: "Electrical /Electronics Engineering", abbreviation: "EET" },
-      { name: "Computer Engineering Technology", abbreviation: "CET" },
-      { name: "Computer Science", abbreviation: "CMS" },
-      { name: "Statistics", abbreviation: "STA" },
-    ],
-  },
-];
 
 const RegisterForm: React.FC = () => {
   const [passwordIsVisibe, setPasswordIsVisible] =

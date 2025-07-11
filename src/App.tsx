@@ -9,6 +9,7 @@ import ChangePassword from "@/pages/dashboard/ChangePassword";
 import OnBoarding from "@/pages/dashboard/OnBoarding";
 import IndexPage from "./IndexPage";
 import { ProtectedRoute } from "./routes/ProtectedRoute";
+import { ProtectedOnboarding } from "./routes/ProtecedOnBoarding";
 
 const App: React.FC = () => {
   return (
@@ -32,7 +33,14 @@ const App: React.FC = () => {
             <Route path="profile" element={<Profile />} />
             <Route path="fees" element={<Fees />} />
             <Route path="change-password" element={<ChangePassword />} />
-            <Route path="onboarding" element={<OnBoarding />} />
+            <Route
+              path="onboarding"
+              element={
+                <ProtectedOnboarding>
+                  <OnBoarding />
+                </ProtectedOnboarding>
+              }
+            />
           </Route>
           <Route path="*" element={<p>Not found!</p>} />
         </Routes>

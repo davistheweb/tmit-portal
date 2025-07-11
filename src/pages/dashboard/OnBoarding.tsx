@@ -4,11 +4,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { profileSchema } from "@/lib/validators/profileSchema";
 import type { z } from "zod";
 import { toast } from "sonner";
+import { useNavigate } from "react-router";
 import { submitStudentOnboarding } from "@/api/services/submitStudentOnboarding";
 
 type ProfileFormData = z.infer<typeof profileSchema>;
 
 export default function OnBoarding() {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -23,20 +25,23 @@ export default function OnBoarding() {
 
       const res = await submitStudentOnboarding(data);
       if (res.status == 200) toast.success(res.data.message);
+
+      setTimeout(() => {
+        navigate("/dashboard/profile");
+      }, 3000);
       // toast.success("Profile saved");
       // console.log(res.data);
     } catch (err: any) {
       if (err.response) {
         console.error("API Error:", err.response.data);
         toast.error(
-          `Error: ${err.response.data.message || "Something went wrong"}`
+          `Error: ${err.response.data.message || "Something went wrong"}`,
         );
       } else {
         console.error("Unexpected Error:", err);
         toast.error("Something went wrong. Please try again.");
       }
     }
-    
   };
 
   const baseCls = "input w-full border rounded px-3 py-2";

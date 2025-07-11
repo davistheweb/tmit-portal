@@ -19,8 +19,11 @@ export default function OnBoarding() {
 
   const onSubmit = async (data: ProfileFormData) => {
     try {
+      console.log(data);
+      
       const res = await submitStudentOnboarding(data);
-      toast.success("Profile saved successfully!");
+      if(res.status == 200) toast.success("Profile saved successfully!");
+      toast.success("Profile saved");
       console.log(res.data);
     } catch (err) {
       console.error("Error submitting profile:", err);
@@ -265,7 +268,7 @@ export default function OnBoarding() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-6 rounded-lg transition disabled:opacity-50"
+            className="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-6 rounded-lg transition disabled:opacity-50 cursor-pointer"
           >
             {isSubmitting ? "Saving..." : "Save & Continue"}
           </button>

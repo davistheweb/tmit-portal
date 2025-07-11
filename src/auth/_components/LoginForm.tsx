@@ -128,7 +128,7 @@ const LoginForm: React.FC = () => {
           <span className="text-xs">New Student?</span>
           <Link
             to="/auth/register"
-            className="font-boldtext-[15px] cursor-pointer underline decoration-1 decoration-green-500"
+            className="font-boldtext-[15px] cursor-pointer underline decoration-1 decoration-green-500 text-xs"
           >
             Register account
           </Link>

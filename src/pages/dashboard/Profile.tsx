@@ -45,7 +45,7 @@ const fields: [string, string][] = [
   ["Year", student.year],
 ];
 
-export function Profile() {
+export const Profile: React.FC = () => {
   return (
     <>
       <style>{`
@@ -163,4 +163,4 @@ export function Profile() {
       </div>
     </>
   );
-}
+};

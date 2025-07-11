@@ -1,5 +1,5 @@
 // src/components/Profile.tsx
-// import React from "react";
+import React from "react";
 import { Avatar, AvatarImage, AvatarFallback } from "@radix-ui/react-avatar";
 import { Printer } from "lucide-react";
 import { schoolLogo } from "@/assets";
@@ -50,6 +50,9 @@ export function Profile() {
     <>
       <style>{`
         @media print {
+          html, body {
+            height: 100%;
+          }
           body * {
             visibility: hidden !important;
           }
@@ -62,6 +65,7 @@ export function Profile() {
             top: 0;
             left: 0;
             width: 100%;
+            min-height: 100vh;
             padding: 1in;
           }
           .watermark {
@@ -98,7 +102,7 @@ export function Profile() {
           {/* Screen profile card */}
           <div className="bg-white rounded-2xl shadow p-4 sm:p-6 mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 print:hidden">
             <div className="flex items-center gap-4">
-              <Avatar className="w-16 h-16">
+              <Avatar className="w-16 h-16 ring-2 ring-green-500">
                 <AvatarImage src="/me.jpg" alt="Student photo" />
                 <AvatarFallback>JD</AvatarFallback>
               </Avatar>

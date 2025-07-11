@@ -25,20 +25,13 @@ const ProfileDropdown: React.FC<ProfileDropdownProps> = ({ open, setOpen }) => {
 
   const {
     profile,
-    isLoading,
+    // isLoading,
     error,
     // refetch
   } = useStudentProfileDetails();
 
   if (!open) return null;
 
-  if (isLoading) {
-    return (
-      <div className="flex justify-center items-center py-12 w-full h-full">
-        <div className="h-10 w-10 border-4 border-green-500 border-t-transparent rounded-full animate-spin"></div>
-      </div>
-    );
-  }
 
   if (error || !profile) {
     return (

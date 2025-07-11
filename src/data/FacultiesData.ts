@@ -16,7 +16,7 @@ export const faculties = [
       { name: "General Nursing Science", abbreviation: "GNS" },
       { name: "Community Health", abbreviation: "CHT" },
       { name: "Medical Laboratory Technology", abbreviation: "MLT" },
-      { name: "Health Information Management", abbreviation: "HIM" },
+      { name: "PHARMACEUTICAL TECHNOLOGY", abbreviation: "PT" },
     ],
   },
   {

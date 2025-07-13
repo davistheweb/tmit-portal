@@ -26,8 +26,10 @@ export default function OnBoarding() {
       const res = await submitStudentOnboarding(data);
       if (res.status == 200) toast.success(res.data.message);
 
+      localStorage.setItem("profile_completed", "true");
+
       setTimeout(() => {
-        navigate("/dashboard/profile");
+        navigate("/dashboard/profile", { replace: true });
       }, 3000);
       // toast.success("Profile saved");
       // console.log(res.data);
@@ -35,7 +37,7 @@ export default function OnBoarding() {
       if (err.response) {
         console.error("API Error:", err.response.data);
         toast.error(
-          `Error: ${err.response.data.message || "Something went wrong"}`,
+          `Error: ${err.response.data.message || "Something went wrong"}`
         );
       } else {
         console.error("Unexpected Error:", err);

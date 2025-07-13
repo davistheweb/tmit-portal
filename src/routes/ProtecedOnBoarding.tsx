@@ -6,13 +6,13 @@ export const ProtectedOnboarding = ({
 }: {
   children: React.JSX.Element;
 }) => {
-  const student_has_completed_profile_onboarding =
-    localStorage.getItem("profile_completed");
-  console.log(student_has_completed_profile_onboarding);
+  const profileCompleted = localStorage.getItem("profile_completed");
 
-  return student_has_completed_profile_onboarding ? (
-    <Navigate to="/dashboard" replace />
-  ) : (
-    children
-  );
+  // If profile_completed is "true", redirect away
+  if (profileCompleted === "true") {
+    return <Navigate to="/dashboard" replace />;
+  }
+
+  // Otherwise, allow onboarding
+  return children;
 };

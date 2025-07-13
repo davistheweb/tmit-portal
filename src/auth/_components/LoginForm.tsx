@@ -49,7 +49,14 @@ const LoginForm: React.FC = () => {
 
       login(token, student);
       toast.success("Login successful, redirecting");
-      setTimeout(() => navigate("/dashboard/onboarding"), 1500);
+      setTimeout(() => {
+        const completed = localStorage.getItem("profile_completed");
+        if (completed === "true") {
+          navigate("/dashboard");
+        } else {
+          navigate("/dashboard/onboarding");
+        }
+      }, 1500);
     }
   };
 

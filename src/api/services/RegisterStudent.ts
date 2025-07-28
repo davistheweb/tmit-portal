@@ -12,10 +12,10 @@ export const RegisterStudent = async (
   try {
     const response = await api.post("/register", {
       reg_number: data.regNum,
-      department: data.department,
-      name: data.name,
       email: data.email,
+      name: data.name,
       password: data.password,
+      department: data.department,
     });
 
     if (response.status === 201) {

@@ -4,6 +4,8 @@ import { Printer } from "lucide-react";
 import { schoolLogo } from "@/assets";
 import { useStudentProfileDetails } from "@/hooks/useStudentProfileDetails";
 
+const API_BASE_URL = import.meta.env.VITE_API_URL;
+
 export const ProfileBody: React.FC = () => {
   const {
     profile,
@@ -30,10 +32,11 @@ export const ProfileBody: React.FC = () => {
 
   const studentProfile = profile.profile;
   const fullName = `${studentProfile.surname} ${studentProfile.middle_name} ${studentProfile.last_name}`;
+  console.log(studentProfile.image_path);
 
   const fields: [string, string][] = [
     ["Full Name", fullName],
-    ["Department", studentProfile.department],
+    ["Department", JSON.parse(studentProfile.department).name],
     ["Date of Birth", studentProfile.dob],
     ["Country", studentProfile.country],
     ["State of Origin", studentProfile.state],
@@ -72,16 +75,21 @@ export const ProfileBody: React.FC = () => {
         <div className="printable-content">
           {/* Screen header */}
           <div className="text-center mb-6 print:hidden">
-            <img src={schoolLogo} alt="School Logo" className="mx-auto h-16" />
+            <img
+              src={schoolLogo}
+              alt="School Logo"
+              className="mx-auto h-16"
+              draggable={false}
+            />
             <h1 className="text-2xl font-bold mt-2">TMIT PORTAL</h1>
           </div>
 
           {/* Screen profile card */}
           <div className="bg-white rounded-2xl shadow p-4 sm:p-6 mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 print:hidden">
             <div className="flex items-center gap-4">
-              <Avatar className="w-16 h-16 ring-2 ring-green-500">
+              <Avatar className="w-16 h-fit ring-2 ring-green-500">
                 <AvatarImage
-                  src={studentProfile.image_path}
+                  src={`${API_BASE_URL}/storage/${studentProfile.image_path}`}
                   alt="Student photo"
                   className="text-center flex w-full"
                 />
@@ -105,7 +113,7 @@ export const ProfileBody: React.FC = () => {
               Student Information
             </h3>
             <div className="flex justify-center">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
                 {fields.map(([label, value]) => (
                   <div key={label}>
                     <p className="text-sm text-gray-500 mb-1">{label}</p>
@@ -125,7 +133,7 @@ export const ProfileBody: React.FC = () => {
               Personal Information
             </h2>
             <img
-              src={`https://api.tmit-ogoja.edu.ng/api/student/profile/image/${studentProfile.image_path}`}
+              src={`${API_BASE_URL}/storage/${studentProfile.image_path}`}
               alt="Student photo"
               className="mx-auto h-24 w-24 mb-2 print:block"
             />

@@ -6,7 +6,9 @@ export const GetStudentProfileDetails = async (): Promise<
   IStudentProfileDetails | string
 > => {
   try {
-    const response = await api.get<IStudentProfileDetails>("/student/profile");
+    const response = await api.get<IStudentProfileDetails>(
+      "/api/student/profile",
+    );
     return response.data;
   } catch (err: unknown) {
     if (axios.isAxiosError(err)) {

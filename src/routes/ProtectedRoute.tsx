@@ -16,7 +16,7 @@ export const ProtectedRoute = ({
   }
 
   const isAccessingOnboarding = location.pathname.includes(
-    "/dashboard/onboarding"
+    "/dashboard/onboarding",
   );
 
   if (profileCompleted !== "true" && !isAccessingOnboarding) {

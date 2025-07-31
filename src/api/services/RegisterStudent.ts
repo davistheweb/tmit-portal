@@ -10,7 +10,7 @@ export const RegisterStudent = async (
   data: RegisterFormSchema,
 ): Promise<RegisterResponse | string[]> => {
   try {
-    const response = await api.post("/register", {
+    const response = await api.post("/api/register", {
       reg_number: data.regNum,
       email: data.email,
       name: data.name,

@@ -5,7 +5,7 @@ import { type LoginFormSchema } from "@/auth/_components/LoginForm";
 export const LoginStudent = async (data: LoginFormSchema): Promise<unknown> => {
   const { email, password } = data;
   try {
-    const response = await api.post("/login", { email, password });
+    const response = await api.post("/api/login", { email, password });
 
     if (response.status === 200) {
       localStorage.setItem("profile_completed", response.data.profile_complete);

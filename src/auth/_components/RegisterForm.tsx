@@ -14,7 +14,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { AuthFormLayout } from "@/components/layouts";
 import { RegisterStudent } from "@/api/services/RegisterStudent";
-import { faculties } from "@/data";
+// import { faculties } from "@/data";
+import { useFaculties } from "@/hooks/useFaculties";
 
 export { type RegisterFormSchema };
 
@@ -24,6 +25,8 @@ const RegisterForm: React.FC = () => {
 
   const [confirmPasswordIsVisible, setConfirmPasswordIsVisible] =
     React.useState<boolean>(false);
+
+  const { faculties, isLoading, error, refetch: fetch } = useFaculties();
 
   const tooglePasswordVisibility = (): void =>
     setPasswordIsVisible((prev) => !prev);
@@ -88,40 +91,78 @@ const RegisterForm: React.FC = () => {
           <Label htmlFor="department" className="mb-1">
             Department
           </Label>
-          <div className="relative w-full">
-            <select
-              id="department"
-              {...register("department")}
-              className={`w-full rounded-sm px-3 py-2 bg-white border text-sm ${
-                errors.department ? "border-red-300" : "border-gray-300"
-              } focus:border-green-500 focus:ring-1 focus:ring-green-500 focus:outline-none appearance-none`}
-            >
-              <option value="">Select department</option>
-              {faculties.map((faculty) => (
-                <optgroup key={faculty.abbreviation} label={faculty.name}>
-                  {faculty.departments.map((dept) => (
-                    <option key={dept.abbreviation} value={dept.abbreviation}>
-                      {dept.name} ({dept.abbreviation})
-                    </option>
-                  ))}
-                </optgroup>
-              ))}
-            </select>
-            <div className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-gray-500">
-              <svg
-                className="h-4 w-4"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 011.08 1.04l-4.25 4.25a.75.75 0 01-1.08 0L5.25 8.27a.75.75 0 01-.02-1.06z"
-                  clipRule="evenodd"
-                />
-              </svg>
+
+          {isLoading ? (
+            <div className="relative w-full">
+              <div className="animate-pulse h-10 w-full bg-gray-200 rounded-sm border border-gray-300" />
+              <div className="absolute right-3 top-2.5 text-gray-400">
+                <svg
+                  className="h-4 w-4"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 011.08 1.04l-4.25 4.25a.75.75 0 01-1.08 0L5.25 8.27a.75.75 0 01-.02-1.06z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </div>
             </div>
-          </div>
+          ) : error ? (
+            <div className="text-sm text-red-600">
+              Couldn’t fetch departments.{" "}
+              <button
+                onClick={fetch}
+                type="button"
+                className="text-green-600 underline cursor-pointer"
+              >
+                Retry
+              </button>
+            </div>
+          ) : faculties.length === 0 ? (
+            <p className="text-sm text-red-500">
+              No faculties found. Registration not available yet.
+            </p>
+          ) : (
+            <div className="relative w-full">
+              <select
+                id="department"
+                {...register("department")}
+                className={`w-full rounded-sm px-3 py-2 bg-white border text-sm ${
+                  errors.department ? "border-red-300" : "border-gray-300"
+                } focus:border-green-500 focus:ring-1 focus:ring-green-500 focus:outline-none appearance-none`}
+              >
+                <option value="">Select department</option>
+                {faculties.map((faculty) => (
+                  <optgroup key={faculty.id} label={faculty.name}>
+                    {faculty.departments.map((dept) => (
+                      <option key={dept.code} value={dept.code}>
+                        {dept.name} ({dept.code})
+                      </option>
+                    ))}
+                  </optgroup>
+                ))}
+              </select>
+
+              <div className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-gray-500">
+                <svg
+                  className="h-4 w-4"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 011.08 1.04l-4.25 4.25a.75.75 0 01-1.08 0L5.25 8.27a.75.75 0 01-.02-1.06z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </div>
+            </div>
+          )}
+
           {errors.department && (
             <span className="text-red-600 text-xs select-none">
               {errors.department.message}

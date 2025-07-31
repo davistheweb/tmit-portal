@@ -37,7 +37,7 @@ export default function OnBoarding() {
       if (err.response) {
         console.error("API Error:", err.response.data);
         toast.error(
-          `Error: ${err.response.data.message || "Something went wrong"}`
+          `Error: ${err.response.data.message || "Something went wrong"}`,
         );
       } else {
         console.error("Unexpected Error:", err);

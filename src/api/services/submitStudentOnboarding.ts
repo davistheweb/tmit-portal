@@ -65,7 +65,7 @@ export const submitStudentOnboarding = async (
     formData.append("certifications", data.certifications);
   }
 
-  return await api.post("/student/profile", formData, {
+  return await api.post("/api/student/profile", formData, {
     headers: { "Content-Type": "multipart/form-data" },
   });
 };

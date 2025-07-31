@@ -32,7 +32,6 @@ const ProfileDropdown: React.FC<ProfileDropdownProps> = ({ open, setOpen }) => {
 
   if (!open) return null;
 
-
   if (error || !profile) {
     return (
       <div className="text-center py-6 text-red-600">

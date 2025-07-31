@@ -136,7 +136,10 @@ const RegisterForm: React.FC = () => {
               >
                 <option value="">Select department</option>
                 {faculties.map((faculty) => (
-                  <optgroup key={faculty.id} label={faculty.name}>
+                  <optgroup
+                    key={faculty.id}
+                    label={`${faculty.name} (${faculty.abbrev})`}
+                  >
                     {faculty.departments.map((dept) => (
                       <option key={dept.code} value={dept.code}>
                         {dept.name} ({dept.code})

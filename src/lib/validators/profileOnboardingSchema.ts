@@ -44,7 +44,7 @@ export const profileSchema = z.object({
       (files) => !files || (files instanceof FileList && files.length > 0),
       {
         message: "Passport photo is required",
-      }
+      },
     )
     .optional(),
 
@@ -54,7 +54,7 @@ export const profileSchema = z.object({
       (files) => !files || (files instanceof FileList && files.length > 0),
       {
         message: "Certification document is required",
-      }
+      },
     )
     .optional(),
 });

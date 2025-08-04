@@ -2,7 +2,6 @@ import type { ProfileFormData } from "@/lib/validators/profileOnboardingSchema";
 import api from "../api";
 import type { AxiosResponse } from "axios";
 
-
 export const submitStudentOnboarding = async (
   data: ProfileFormData,
 ): Promise<AxiosResponse> => {

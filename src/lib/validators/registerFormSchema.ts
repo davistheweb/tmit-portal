@@ -8,7 +8,7 @@ export const registerFormSchema = z
       .regex(
         /^TMIT\/[A-Z]+\/\d{1,2}\/\d{1,}$/,
         "Registration number must be in the format: TMIT/DEPT/YY/NNNN",
-      ),
+      ).trim(),
     name: z.string().nonempty("Name is required"),
     email: z
       .string()

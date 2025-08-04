@@ -137,7 +137,7 @@ const LoginForm: React.FC = () => {
             to="/auth/register"
             className="font-boldtext-[15px] cursor-pointer underline decoration-1 decoration-green-500 text-xs"
           >
-            Register account
+            Register
           </Link>
         </div>
       </div>

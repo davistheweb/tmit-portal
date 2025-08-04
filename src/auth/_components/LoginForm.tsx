@@ -120,6 +120,15 @@ const LoginForm: React.FC = () => {
         <div className="w-full h-[0.3px] bg-gray-400 z-10" />
       </div>
       <div className="flex justify-between items-center mt-4">
+        <div className="flex space-x-2 items-center">
+          <span className="text-xs">New Student?</span>
+          <Link
+            to="/auth/register"
+            className="font-boldtext-[15px] cursor-pointer underline decoration-1 decoration-green-500 text-xs"
+          >
+            Register
+          </Link>
+        </div>
         <button
           className="rounded-sm text-white text-[15px] font-semibold cursor-pointer w-24 h-10 bg-green-500 flex items-center justify-center"
           type="submit"
@@ -131,15 +140,6 @@ const LoginForm: React.FC = () => {
             "Login"
           )}
         </button>
-        <div className="flex space-x-2 items-center">
-          <span className="text-xs">New Student?</span>
-          <Link
-            to="/auth/register"
-            className="font-boldtext-[15px] cursor-pointer underline decoration-1 decoration-green-500 text-xs"
-          >
-            Register
-          </Link>
-        </div>
       </div>
     </form>
   );

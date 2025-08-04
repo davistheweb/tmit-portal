@@ -1,27 +1,7 @@
+import type { ProfileFormData } from "@/lib/validators/profileOnboardingSchema";
 import api from "../api";
 import type { AxiosResponse } from "axios";
 
-export interface ProfileFormData {
-  firstName: string;
-  middleName: string;
-  lastName: string;
-  gender: "male" | "female";
-  dateOfBirth: string;
-  country: string;
-  stateOfOrigin: string;
-  lga: string;
-  homeTown: string;
-  phone: string;
-  nin: string;
-  address: string;
-  bloodGroup: string;
-  genotype: string;
-  religion: string;
-  department: string;
-  year: number;
-  image?: FileList;
-  certifications?: FileList;
-}
 
 export const submitStudentOnboarding = async (
   data: ProfileFormData,

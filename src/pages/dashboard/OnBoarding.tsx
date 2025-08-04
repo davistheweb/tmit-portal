@@ -1,13 +1,13 @@
 // components/OnBoarding.tsx
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { profileSchema } from "@/lib/validators/profileOnboardingSchema";
-import type { z } from "zod";
+import {
+  profileSchema,
+  type ProfileFormData,
+} from "@/lib/validators/profileOnboardingSchema";
 import { toast } from "sonner";
 // import { useNavigate } from "react-router";
 import { submitStudentOnboarding } from "@/api/services/submitStudentOnboarding";
-
-type ProfileFormData = z.infer<typeof profileSchema>;
 
 export default function OnBoarding() {
   // const navigate = useNavigate();
@@ -37,7 +37,7 @@ export default function OnBoarding() {
       if (err.response) {
         console.error("API Error:", err.response.data);
         toast.error(
-          `Error: ${err.response.data.message || "Something went wrong"}`,
+          `Error: ${err.response.data.message || "Something went wrong"}`
         );
       } else {
         console.error("Unexpected Error:", err);
@@ -106,7 +106,7 @@ export default function OnBoarding() {
               {...register("gender")}
               className={`${baseCls} ${errors.gender ? errCls : ""}`}
             >
-              <option value="">Select</option>
+              <option value="" disabled>Select</option>
               <option value="male">male</option>
               <option value="female">female</option>
             </select>
@@ -197,7 +197,7 @@ export default function OnBoarding() {
               {...register("bloodGroup")}
               className={`${baseCls} ${errors.bloodGroup ? errCls : ""}`}
             >
-              <option value="">Select</option>
+              <option value="" disabled>Select</option>
               {["O+", "O-", "A+", "A-", "B+", "B-", "AB+", "AB-"].map((opt) => (
                 <option key={opt}>{opt}</option>
               ))}
@@ -210,7 +210,7 @@ export default function OnBoarding() {
               {...register("genotype")}
               className={`${baseCls} ${errors.genotype ? errCls : ""}`}
             >
-              <option value="">Select</option>
+              <option value="" disabled>Select</option>
               {["AA", "AS", "SS", "AC", "SC"].map((opt) => (
                 <option key={opt}>{opt}</option>
               ))}
@@ -223,7 +223,7 @@ export default function OnBoarding() {
               {...register("religion")}
               className={`${baseCls} ${errors.religion ? errCls : ""}`}
             >
-              <option value="">Select</option>
+              <option value="" disabled>Select</option>
               {["Christianity", "Islam", "Other"].map((opt) => (
                 <option key={opt}>{opt}</option>
               ))}

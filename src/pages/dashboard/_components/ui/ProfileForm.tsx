@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { profileSchema } from "@/lib/validators/profileSchema";
+import { profileSchema } from "@/lib/validators/profileOnboardingSchema";
 
 type ProfileFormData = z.infer<typeof profileSchema>;
 

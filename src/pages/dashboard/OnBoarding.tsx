@@ -1,16 +1,16 @@
 // components/OnBoarding.tsx
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { profileSchema } from "@/lib/validators/profileSchema";
+import { profileSchema } from "@/lib/validators/profileOnboardingSchema";
 import type { z } from "zod";
 import { toast } from "sonner";
-import { useNavigate } from "react-router";
+// import { useNavigate } from "react-router";
 import { submitStudentOnboarding } from "@/api/services/submitStudentOnboarding";
 
 type ProfileFormData = z.infer<typeof profileSchema>;
 
 export default function OnBoarding() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -29,7 +29,7 @@ export default function OnBoarding() {
       localStorage.setItem("profile_completed", "true");
 
       setTimeout(() => {
-        navigate("/dashboard/profile", { replace: true });
+        window.location.href = "/dashboard/profile";
       }, 3000);
       // toast.success("Profile saved");
       // console.log(res.data);

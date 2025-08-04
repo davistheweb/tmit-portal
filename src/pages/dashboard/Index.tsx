@@ -12,19 +12,22 @@ export const Index: React.FC = () => {
           alt="tmit-logo"
           draggable={false}
         />
-        <h1 className="text-center">Hello Applicant, Welcome to TMIT core portal!</h1>
+        <h1 className="text-center">
+          Hello Applicant, Welcome to TMIT core portal!
+        </h1>
         <h1 className="text-center text-red-400 font-semibold">
           Please note that this page is still under development by the technical
           team.
         </h1>
         <div className="flex flex-col justify-center items-center gap-5">
-          <Link to="profile" className="bg-green-500 p-3 rounded-sm text-white">Continue to profile</Link>
+          <Link to="profile" className="bg-green-500 p-3 rounded-sm text-white">
+            Continue to profile
+          </Link>
         </div>
       </div>
     </div>
   );
 };
-
 
 // import React from "react";
 // import { CheckSquare, Users, CircleEllipsis, School } from "lucide-react";
@@ -139,4 +142,3 @@ export const Index: React.FC = () => {
 //     </div>
 //   );
 // };
-

@@ -10,6 +10,7 @@ import OnBoarding from "@/pages/dashboard/OnBoarding";
 import IndexPage from "./IndexPage";
 import { ProtectedRoute } from "./routes/ProtectedRoute";
 import { ProtectedOnboarding } from "./routes/ProtecedOnBoarding";
+import ResultPage from "@/pages/dashboard/ResultPage";
 
 const App: React.FC = () => {
   return (
@@ -32,6 +33,7 @@ const App: React.FC = () => {
             <Route index element={<Index />} />
             <Route path="profile" element={<Profile />} />
             <Route path="fees" element={<Fees />} />
+            <Route path="results" element={<ResultPage />} />
             <Route path="change-password" element={<ChangePassword />} />
             <Route
               path="onboarding"

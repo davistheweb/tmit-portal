@@ -339,7 +339,7 @@ const RegisterForm: React.FC = () => {
           )}
         </div>
       </div>
-      <div className="flex space-x-2 items-center">
+      <div className="flex space-x-2 items-center mt-2">
         <span className="text-xs">Already registered?</span>
         <Link
           to="/auth/login"

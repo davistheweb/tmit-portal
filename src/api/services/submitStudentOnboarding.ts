@@ -3,7 +3,7 @@ import api from "../api";
 import type { AxiosResponse } from "axios";
 
 export const submitStudentOnboarding = async (
-  data: ProfileFormData,
+  data: ProfileFormData
 ): Promise<AxiosResponse> => {
   const formData = new FormData();
 
@@ -25,7 +25,7 @@ export const submitStudentOnboarding = async (
   formData.append("department", data.department);
   formData.append("year", data.year.toString());
 
-  /*   if (data.image instanceof FileList && data.image.length > 0) {
+    if (data.image instanceof FileList && data.image.length > 0) {
     formData.append("image", data.image[0]);
   }
 
@@ -34,15 +34,15 @@ export const submitStudentOnboarding = async (
     data.certifications.length > 0
   ) {
     formData.append("certifications", data.certifications[0]);
-  } */
-
-  if (data.image instanceof File) {
-    formData.append("image", data.image);
   }
 
-  if (data.certifications instanceof File) {
-    formData.append("certifications", data.certifications);
-  }
+  // if (data.image instanceof File) {
+  //   formData.append("image", data.image);
+  // }
+
+  // if (data.certifications instanceof File) {
+  //   formData.append("certifications", data.certifications);
+  // }
 
   return await api.post("/api/student/profile", formData, {
     headers: { "Content-Type": "multipart/form-data" },

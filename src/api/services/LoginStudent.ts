@@ -10,6 +10,7 @@ export const LoginStudent = async (data: LoginFormSchema): Promise<unknown> => {
     if (response.status === 200) {
       localStorage.setItem("profile_completed", response.data.profile_complete);
       console.log(response.data.profile_complete);
+      console.log(response);
       return response.data;
     }
   } catch (err: unknown) {

@@ -67,6 +67,7 @@ const Sidebar: React.FC<SidebarProps> = ({
           <Link
             key={link.name}
             to={link.href}
+            onClick={() => closeSidebar()}
             className="flex items-center px-3 py-2 text-gray-700 hover:bg-gray-100 rounded"
           >
             {link.icon}

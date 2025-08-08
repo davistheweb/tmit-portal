@@ -10,7 +10,7 @@ import OnBoarding from "@/pages/dashboard/OnBoarding";
 import IndexPage from "./IndexPage";
 import { ProtectedRoute } from "./routes/ProtectedRoute";
 import { ProtectedOnboarding } from "./routes/ProtecedOnBoarding";
-import ResultPage from "@/pages/dashboard/ResultPage";
+import { ResultPage } from "@/pages/dashboard/ResultPage";
 
 const App: React.FC = () => {
   return (

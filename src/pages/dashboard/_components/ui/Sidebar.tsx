@@ -32,7 +32,11 @@ const Sidebar: React.FC<SidebarProps> = ({
       icon: <User className="w-4 h-4" />,
       href: "/dashboard/profile",
     },
-    { name: "Fees", icon: <CreditCard className="w-4 h-4" />, href: "fees" },
+    {
+      name: "School Fees",
+      icon: <CreditCard className="w-4 h-4" />,
+      href: "fees",
+    },
     {
       name: "Results",
       icon: <BookText className="w-4 h-4" />,

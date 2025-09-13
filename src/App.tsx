@@ -4,7 +4,7 @@ import { Login, Register } from "./auth/pages";
 import { Dashboard } from "@/pages/dashboard/Dashboard";
 import { Index } from "@/pages/dashboard/Index";
 import { Profile } from "@/pages/dashboard/Profile";
-import Fees from "@/pages/dashboard/Fees";
+import Fees from "@/pages/dashboard/SchoolFees";
 import ChangePassword from "@/pages/dashboard/ChangePassword";
 import OnBoarding from "@/pages/dashboard/OnBoarding";
 import IndexPage from "./IndexPage";

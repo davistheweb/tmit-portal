@@ -3,7 +3,7 @@ import api from "../api";
 import type { AxiosResponse } from "axios";
 
 export const submitStudentOnboarding = async (
-  data: ProfileFormData
+  data: ProfileFormData,
 ): Promise<AxiosResponse> => {
   const formData = new FormData();
 
@@ -25,7 +25,7 @@ export const submitStudentOnboarding = async (
   formData.append("department", data.department);
   formData.append("year", data.year.toString());
 
-    if (data.image instanceof FileList && data.image.length > 0) {
+  if (data.image instanceof FileList && data.image.length > 0) {
     formData.append("image", data.image[0]);
   }
 

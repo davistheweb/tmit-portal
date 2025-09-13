@@ -85,7 +85,7 @@ export default function Fees() {
 
   const paymentHistory = [
     {
-      invoice: "FUTO/1/SCHF100000139844",
+      invoice: "TMIT/1/SCHF100000139844",
       amount: "48,000",
       balance: "60000",
       level: "100 LEVEL",
@@ -181,6 +181,9 @@ export default function Fees() {
                     <th className="text-left py-3 px-4 font-medium text-gray-700 bg-gray-50">
                       ND3
                     </th>
+                    <th className="text-left py-3 px-4 font-medium text-gray-700 bg-gray-50">
+                      Payment
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -208,6 +211,9 @@ export default function Fees() {
                       </td>
                       <td className="py-3 px-4 text-sm text-gray-900 font-medium">
                         {fee.nd3 && `₦${fee.nd3}`}
+                      </td>
+                      <td className="py-3 px-4 text-sm font-medium">
+                        <Button className="bg-green-500 cursor-pointer hover:bg-green-500/100">Pay</Button>
                       </td>
                     </tr>
                   ))}

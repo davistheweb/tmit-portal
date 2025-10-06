@@ -119,6 +119,8 @@ export default function OnBoarding() {
               type="date"
               {...register("dateOfBirth")}
               className={`${baseCls} ${errors.dateOfBirth ? errCls : ""}`}
+              defaultValue="2000-01-01"
+              placeholder="dd/mm/yy"
             />
             {renderError(errors.dateOfBirth)}
           </div>

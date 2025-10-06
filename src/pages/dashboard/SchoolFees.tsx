@@ -213,7 +213,9 @@ export default function Fees() {
                         {fee.nd3 && `₦${fee.nd3}`}
                       </td>
                       <td className="py-3 px-4 text-sm font-medium">
-                        <Button className="bg-green-500 cursor-pointer hover:bg-green-500/100">Pay</Button>
+                        <Button className="bg-green-500 cursor-pointer hover:bg-green-500/100">
+                          Pay
+                        </Button>
                       </td>
                     </tr>
                   ))}

@@ -1,16 +1,18 @@
 import * as React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router";
 import { Login, Register } from "./auth/pages";
-import { Dashboard } from "@/pages/dashboard/Dashboard";
-import { Index } from "@/pages/dashboard/Index";
-import { Profile } from "@/pages/dashboard/Profile";
-import Fees from "@/pages/dashboard/SchoolFees";
-import ChangePassword from "@/pages/dashboard/ChangePassword";
-import OnBoarding from "@/pages/dashboard/OnBoarding";
 import IndexPage from "./IndexPage";
 import { ProtectedRoute } from "./routes/ProtectedRoute";
 import { ProtectedOnboarding } from "./routes/ProtecedOnBoarding";
-import { ResultPage } from "@/pages/dashboard/ResultPage";
+import {
+  ChangePassword,
+  Dashboard,
+  DashboardIndex,
+  Fees,
+  OnBoarding,
+  Profile,
+  ResultPage,
+} from "./pages/dashboard";
 
 const App: React.FC = () => {
   return (
@@ -30,7 +32,7 @@ const App: React.FC = () => {
               </ProtectedRoute>
             }
           >
-            <Route index element={<Index />} />
+            <Route index element={<DashboardIndex />} />
             <Route path="profile" element={<Profile />} />
             <Route path="fees" element={<Fees />} />
             <Route path="results" element={<ResultPage />} />

@@ -10,8 +10,10 @@ import {
   DashboardIndex,
   Fees,
   OnBoarding,
+  PaymentSummary,
   Profile,
   ResultPage,
+  Sessions,
 } from "./pages/dashboard";
 
 const App: React.FC = () => {
@@ -35,6 +37,8 @@ const App: React.FC = () => {
             <Route index element={<DashboardIndex />} />
             <Route path="profile" element={<Profile />} />
             <Route path="fees" element={<Fees />} />
+            <Route path="fees/sessions" element={<Sessions />} />
+            <Route path="fees/pay_fees" element={<PaymentSummary />} />
             <Route path="results" element={<ResultPage />} />
             <Route path="change-password" element={<ChangePassword />} />
             <Route

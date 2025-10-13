@@ -5,7 +5,8 @@ import OnBoarding from "./OnBoarding";
 import { ResultPage } from "./ResultPage";
 import Fees from "./SchoolFees";
 import DashboardIndex from "./DashboardIndex";
-
+import Sessions from "./Sessions";
+import PaymentSummary from "./PaymentSummary";
 export {
   Dashboard,
   Profile,
@@ -14,4 +15,6 @@ export {
   ResultPage,
   Fees,
   DashboardIndex,
+  Sessions,
+  PaymentSummary
 };

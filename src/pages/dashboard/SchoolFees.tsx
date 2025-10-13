@@ -1,87 +1,78 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-// import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-// import {
-//   DropdownMenu,
-//   DropdownMenuContent,
-//   DropdownMenuItem,
-//   DropdownMenuTrigger,
-// } from "@/components/ui/dropdown-menu";
-import {
-  // Bell, Menu, User, RefreshCw,
-  Printer,
-} from "lucide-react";
+import { Printer } from "lucide-react";
+import { Link } from "react-router";
 
 export default function Fees() {
-  const feeSchedule = [
-    { sn: 1, description: "Acceptance Fees", nd1: "10,000", nd2: "", nd3: "" },
-    { sn: 2, description: "Tuition Fees", nd1: "90,000", nd2: "", nd3: "" },
-    {
-      sn: 3,
-      description: "Matriculation Fees",
-      nd1: "15,000",
-      nd2: "",
-      nd3: "",
-    },
-    { sn: 4, description: "Library", nd1: "10,000", nd2: "", nd3: "" },
-    {
-      sn: 5,
-      description: "Lab/Studio/Workshop Fees",
-      nd1: "10,000",
-      nd2: "",
-      nd3: "",
-    },
-    { sn: 6, description: "Examination Fees", nd1: "20,000", nd2: "", nd3: "" },
-    { sn: 7, description: "Sports Fees", nd1: "5,000", nd2: "", nd3: "" },
-    { sn: 8, description: "Medical Fees", nd1: "10,000", nd2: "", nd3: "" },
-    { sn: 9, description: "Development Levy", nd1: "5,000", nd2: "", nd3: "" },
-    { sn: 10, description: "SUG Dues", nd1: "1,000", nd2: "", nd3: "" },
-    {
-      sn: 11,
-      description: "Departmental Dues",
-      nd1: "5,000",
-      nd2: "",
-      nd3: "",
-    },
-    { sn: 12, description: "Portal Access", nd1: "20,000", nd2: "", nd3: "" },
-    {
-      sn: 13,
-      description: "Entrepreneurship",
-      nd1: "20,000",
-      nd2: "",
-      nd3: "",
-    },
-    {
-      sn: 14,
-      description: "Sub-Total (Other Departments)",
-      nd1: "211,000",
-      nd2: "",
-      nd3: "",
-    },
-    {
-      sn: 15,
-      description: "General Nursing Tuition Differentia",
-      nd1: "120,000",
-      nd2: "",
-      nd3: "",
-    },
-    {
-      sn: 16,
-      description: "Total (Nursing Department)",
-      nd1: "331,000",
-      nd2: "",
-      nd3: "",
-    },
-    {
-      sn: 17,
-      description: "Hostel Accommodation Fees (Optional)",
-      nd1: "40,000",
-      nd2: "",
-      nd3: "",
-    },
-    { sn: 18, description: "Grand Total", nd1: "381,000", nd2: "", nd3: "" },
-  ];
+  // const feeSchedule = [
+  //   { sn: 1, description: "Acceptance Fees", nd1: "10,000", nd2: "", nd3: "" },
+  //   { sn: 2, description: "Tuition Fees", nd1: "90,000", nd2: "", nd3: "" },
+  //   {
+  //     sn: 3,
+  //     description: "Matriculation Fees",
+  //     nd1: "15,000",
+  //     nd2: "",
+  //     nd3: "",
+  //   },
+  //   { sn: 4, description: "Library", nd1: "10,000", nd2: "", nd3: "" },
+  //   {
+  //     sn: 5,
+  //     description: "Lab/Studio/Workshop Fees",
+  //     nd1: "10,000",
+  //     nd2: "",
+  //     nd3: "",
+  //   },
+  //   { sn: 6, description: "Examination Fees", nd1: "20,000", nd2: "", nd3: "" },
+  //   { sn: 7, description: "Sports Fees", nd1: "5,000", nd2: "", nd3: "" },
+  //   { sn: 8, description: "Medical Fees", nd1: "10,000", nd2: "", nd3: "" },
+  //   { sn: 9, description: "Development Levy", nd1: "5,000", nd2: "", nd3: "" },
+  //   { sn: 10, description: "SUG Dues", nd1: "1,000", nd2: "", nd3: "" },
+  //   {
+  //     sn: 11,
+  //     description: "Departmental Dues",
+  //     nd1: "5,000",
+  //     nd2: "",
+  //     nd3: "",
+  //   },
+  //   { sn: 12, description: "Portal Access", nd1: "20,000", nd2: "", nd3: "" },
+  //   {
+  //     sn: 13,
+  //     description: "Entrepreneurship",
+  //     nd1: "20,000",
+  //     nd2: "",
+  //     nd3: "",
+  //   },
+  //   {
+  //     sn: 14,
+  //     description: "Sub-Total (Other Departments)",
+  //     nd1: "211,000",
+  //     nd2: "",
+  //     nd3: "",
+  //   },
+  //   {
+  //     sn: 15,
+  //     description: "General Nursing Tuition Differentia",
+  //     nd1: "120,000",
+  //     nd2: "",
+  //     nd3: "",
+  //   },
+  //   {
+  //     sn: 16,
+  //     description: "Total (Nursing Department)",
+  //     nd1: "331,000",
+  //     nd2: "",
+  //     nd3: "",
+  //   },
+  //   {
+  //     sn: 17,
+  //     description: "Hostel Accommodation Fees (Optional)",
+  //     nd1: "40,000",
+  //     nd2: "",
+  //     nd3: "",
+  //   },
+  //   { sn: 18, description: "Grand Total", nd1: "381,000", nd2: "", nd3: "" },
+  // ];
 
   const paymentHistory = [
     {
@@ -95,67 +86,17 @@ export default function Fees() {
   ];
   return (
     <div className="min-h-screen bg-white">
-      {/* Header */}
-      {/* <header className="border-b border-gray-200 bg-white">
-        <div className="flex items-center justify-between px-4 py-3">
-          <div className="flex items-center gap-4">
-            <Button variant="ghost" size="icon" className="md:hidden">
-              <Menu className="h-5 w-5" />
-            </Button>
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center">
-                <span className="text-white font-bold text-sm">FUTO</span>
-              </div>
-              <div className="hidden md:block">
-                <h1 className="font-semibold text-gray-900">
-                  Federal University of Technology, Owerri
-                </h1>
-              </div>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-3">
-            <h2 className="text-lg font-medium text-gray-900 hidden md:block">
-              School Fees
-            </h2>
-            <Button variant="ghost" size="icon">
-              <RefreshCw className="h-4 w-4" />
-            </Button>
-            <Button variant="ghost" size="icon">
-              <Bell className="h-4 w-4" />
-            </Button>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon">
-                  <Avatar className="h-8 w-8">
-                    <AvatarImage src="/placeholder.svg?height=32&width=32" />
-                    <AvatarFallback>
-                      <User className="h-4 w-4" />
-                    </AvatarFallback>
-                  </Avatar>
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuItem>Profile</DropdownMenuItem>
-                <DropdownMenuItem>Settings</DropdownMenuItem>
-                <DropdownMenuItem>Logout</DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </div>
-        </div>
-      </header> */}
-
       <div className="container mx-auto px-4 py-6 max-w-7xl">
         {/* Page Header */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
           <h1 className="text-2xl font-semibold text-gray-900">School Fees</h1>
-          <Button className="bg-green-500 hover:bg-green-600 text-white">
-            New Invoice
+          <Button className="bg-green-500 hover:bg-green-600 text-white cursor-pointer">
+            <Link to="sessions">New Payment</Link>
           </Button>
         </div>
 
         {/* Fee Schedule Table */}
-        <Card className="mb-8">
+        {/* <Card className="mb-8">
           <CardHeader>
             <CardTitle className="text-lg font-medium text-gray-900">
               Fee Schedule for All Departments
@@ -223,7 +164,7 @@ export default function Fees() {
               </table>
             </div>
           </CardContent>
-        </Card>
+        </Card> */}
 
         {/* Payment History */}
         <Card>
@@ -298,17 +239,10 @@ export default function Fees() {
                         <div className="flex flex-col sm:flex-row gap-2">
                           <Button
                             size="sm"
-                            className="bg-green-500 hover:bg-green-600 text-white text-xs"
-                          >
-                            Generate Balance Invoice
-                          </Button>
-                          <Button
-                            size="sm"
-                            variant="outline"
-                            className="text-xs bg-transparent"
+                            className="bg-green-500 hover:bg-green-600 text-white text-xs cursor-pointer"
                           >
                             <Printer className="h-3 w-3 mr-1" />
-                            Print Receipt
+                            Print Reciept
                           </Button>
                         </div>
                       </td>

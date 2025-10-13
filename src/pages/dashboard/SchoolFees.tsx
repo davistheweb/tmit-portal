@@ -5,75 +5,6 @@ import { Printer } from "lucide-react";
 import { Link } from "react-router";
 
 export default function Fees() {
-  // const feeSchedule = [
-  //   { sn: 1, description: "Acceptance Fees", nd1: "10,000", nd2: "", nd3: "" },
-  //   { sn: 2, description: "Tuition Fees", nd1: "90,000", nd2: "", nd3: "" },
-  //   {
-  //     sn: 3,
-  //     description: "Matriculation Fees",
-  //     nd1: "15,000",
-  //     nd2: "",
-  //     nd3: "",
-  //   },
-  //   { sn: 4, description: "Library", nd1: "10,000", nd2: "", nd3: "" },
-  //   {
-  //     sn: 5,
-  //     description: "Lab/Studio/Workshop Fees",
-  //     nd1: "10,000",
-  //     nd2: "",
-  //     nd3: "",
-  //   },
-  //   { sn: 6, description: "Examination Fees", nd1: "20,000", nd2: "", nd3: "" },
-  //   { sn: 7, description: "Sports Fees", nd1: "5,000", nd2: "", nd3: "" },
-  //   { sn: 8, description: "Medical Fees", nd1: "10,000", nd2: "", nd3: "" },
-  //   { sn: 9, description: "Development Levy", nd1: "5,000", nd2: "", nd3: "" },
-  //   { sn: 10, description: "SUG Dues", nd1: "1,000", nd2: "", nd3: "" },
-  //   {
-  //     sn: 11,
-  //     description: "Departmental Dues",
-  //     nd1: "5,000",
-  //     nd2: "",
-  //     nd3: "",
-  //   },
-  //   { sn: 12, description: "Portal Access", nd1: "20,000", nd2: "", nd3: "" },
-  //   {
-  //     sn: 13,
-  //     description: "Entrepreneurship",
-  //     nd1: "20,000",
-  //     nd2: "",
-  //     nd3: "",
-  //   },
-  //   {
-  //     sn: 14,
-  //     description: "Sub-Total (Other Departments)",
-  //     nd1: "211,000",
-  //     nd2: "",
-  //     nd3: "",
-  //   },
-  //   {
-  //     sn: 15,
-  //     description: "General Nursing Tuition Differentia",
-  //     nd1: "120,000",
-  //     nd2: "",
-  //     nd3: "",
-  //   },
-  //   {
-  //     sn: 16,
-  //     description: "Total (Nursing Department)",
-  //     nd1: "331,000",
-  //     nd2: "",
-  //     nd3: "",
-  //   },
-  //   {
-  //     sn: 17,
-  //     description: "Hostel Accommodation Fees (Optional)",
-  //     nd1: "40,000",
-  //     nd2: "",
-  //     nd3: "",
-  //   },
-  //   { sn: 18, description: "Grand Total", nd1: "381,000", nd2: "", nd3: "" },
-  // ];
-
   const paymentHistory = [
     {
       invoice: "TMIT/1/SCHF100000139844",
@@ -84,6 +15,7 @@ export default function Fees() {
       session: "2021-2022",
     },
   ];
+
   return (
     <div className="min-h-screen bg-white">
       <div className="container mx-auto px-4 py-6 max-w-7xl">
@@ -95,77 +27,6 @@ export default function Fees() {
           </Button>
         </div>
 
-        {/* Fee Schedule Table */}
-        {/* <Card className="mb-8">
-          <CardHeader>
-            <CardTitle className="text-lg font-medium text-gray-900">
-              Fee Schedule for All Departments
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="overflow-x-auto">
-              <table className="w-full border-collapse">
-                <thead>
-                  <tr className="border-b border-gray-200">
-                    <th className="text-left py-3 px-4 font-medium text-gray-700 bg-gray-50">
-                      S/N
-                    </th>
-                    <th className="text-left py-3 px-4 font-medium text-gray-700 bg-gray-50">
-                      Description
-                    </th>
-                    <th className="text-left py-3 px-4 font-medium text-gray-700 bg-gray-50">
-                      ND1
-                    </th>
-                    <th className="text-left py-3 px-4 font-medium text-gray-700 bg-gray-50">
-                      ND2
-                    </th>
-                    <th className="text-left py-3 px-4 font-medium text-gray-700 bg-gray-50">
-                      ND3
-                    </th>
-                    <th className="text-left py-3 px-4 font-medium text-gray-700 bg-gray-50">
-                      Payment
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {feeSchedule.map((fee) => (
-                    <tr
-                      key={fee.sn}
-                      className={`border-b border-gray-100 hover:bg-gray-50 ${
-                        fee.description.includes("Total") ||
-                        fee.description.includes("Sub-Total")
-                          ? "bg-green-50 font-medium"
-                          : ""
-                      }`}
-                    >
-                      <td className="py-3 px-4 text-sm text-gray-900">
-                        {fee.sn}
-                      </td>
-                      <td className="py-3 px-4 text-sm text-gray-900">
-                        {fee.description}
-                      </td>
-                      <td className="py-3 px-4 text-sm text-gray-900 font-medium">
-                        {fee.nd1 && `₦${fee.nd1}`}
-                      </td>
-                      <td className="py-3 px-4 text-sm text-gray-900 font-medium">
-                        {fee.nd2 && `₦${fee.nd2}`}
-                      </td>
-                      <td className="py-3 px-4 text-sm text-gray-900 font-medium">
-                        {fee.nd3 && `₦${fee.nd3}`}
-                      </td>
-                      <td className="py-3 px-4 text-sm font-medium">
-                        <Button className="bg-green-500 cursor-pointer hover:bg-green-500/100">
-                          Pay
-                        </Button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </CardContent>
-        </Card> */}
-
         {/* Payment History */}
         <Card>
           <CardHeader>
@@ -174,7 +35,7 @@ export default function Fees() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="overflow-x-auto">
+            <div className="hidden md:block overflow-x-auto">
               <table className="w-full">
                 <thead>
                   <tr className="border-b border-gray-200">
@@ -236,20 +97,74 @@ export default function Fees() {
                         </span>
                       </td>
                       <td className="py-4 px-4">
-                        <div className="flex flex-col sm:flex-row gap-2">
-                          <Button
-                            size="sm"
-                            className="bg-green-500 hover:bg-green-600 text-white text-xs cursor-pointer"
-                          >
-                            <Printer className="h-3 w-3 mr-1" />
-                            Print Reciept
-                          </Button>
-                        </div>
+                        <Button
+                          size="sm"
+                          className="bg-green-500 hover:bg-green-600 text-white text-xs cursor-pointer"
+                        >
+                          <Printer className="h-3 w-3 mr-1" />
+                          Print Receipt
+                        </Button>
                       </td>
                     </tr>
                   ))}
                 </tbody>
               </table>
+            </div>
+
+            <div className="block md:hidden space-y-4">
+              {paymentHistory.map((payment, index) => (
+                <Card key={index} className="border border-gray-200">
+                  <CardContent className="p-4 space-y-3">
+                    <div className="flex items-start justify-between">
+                      <div className="flex-1">
+                        <p className="text-xs text-gray-500 mb-1">Invoice #</p>
+                        <p className="text-sm font-medium text-gray-900 break-all">
+                          {payment.invoice}
+                        </p>
+                      </div>
+                      <Badge
+                        variant="secondary"
+                        className="bg-gray-100 text-gray-700 ml-2"
+                      >
+                        {payment.level}
+                      </Badge>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-3">
+                      <div>
+                        <p className="text-xs text-gray-500 mb-1">Amount</p>
+                        <p className="text-sm font-medium text-red-600">
+                          ₦{payment.amount}
+                        </p>
+                        <p className="text-xs text-gray-500 mt-1">
+                          Balance: ₦{payment.balance}
+                        </p>
+                      </div>
+                      <div>
+                        <p className="text-xs text-gray-500 mb-1">Session</p>
+                        <p className="text-sm text-gray-900">
+                          {payment.session}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div>
+                      <p className="text-xs text-gray-500 mb-1">Payment Type</p>
+                      <p className="text-sm text-gray-900">
+                        {payment.paymentType}
+                      </p>
+                    </div>
+
+                    <Button
+                      size="sm"
+                      className="w-full bg-green-500 hover:bg-green-600 text-white cursor-pointer"
+                    >
+                      <Printer className="h-3 w-3 mr-2" />
+                      Print Receipt
+                    </Button>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
           </CardContent>
         </Card>

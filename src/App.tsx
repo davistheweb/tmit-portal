@@ -5,6 +5,7 @@ import IndexPage from "./IndexPage";
 import { ProtectedRoute } from "./routes/ProtectedRoute";
 import { ProtectedOnboarding } from "./routes/ProtecedOnBoarding";
 import {
+  AcceptanceFeePage,
   ChangePassword,
   Dashboard,
   DashboardIndex,
@@ -39,6 +40,7 @@ const App: React.FC = () => {
             <Route path="fees" element={<Fees />} />
             <Route path="fees/sessions" element={<Sessions />} />
             <Route path="fees/pay_fees" element={<PaymentSummary />} />
+            <Route path="acceptance-fee" element={<AcceptanceFeePage/>} />
             <Route path="results" element={<ResultPage />} />
             <Route path="change-password" element={<ChangePassword />} />
             <Route

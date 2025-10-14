@@ -38,6 +38,11 @@ const Sidebar: React.FC<SidebarProps> = ({
       href: "fees",
     },
     {
+      name: "Acceptance Fees",
+      icon: <CreditCard className="w-4 h-4" />,
+      href: "acceptance-fee",
+    },
+    {
       name: "Results",
       icon: <BookText className="w-4 h-4" />,
       href: "results",

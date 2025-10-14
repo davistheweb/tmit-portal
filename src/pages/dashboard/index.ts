@@ -7,6 +7,7 @@ import Fees from "./SchoolFees";
 import DashboardIndex from "./DashboardIndex";
 import Sessions from "./Sessions";
 import PaymentSummary from "./PaymentSummary";
+import AcceptanceFeePage from "./AcceptanceFeePage";
 export {
   Dashboard,
   Profile,
@@ -16,5 +17,6 @@ export {
   Fees,
   DashboardIndex,
   Sessions,
-  PaymentSummary
+  PaymentSummary,
+  AcceptanceFeePage
 };

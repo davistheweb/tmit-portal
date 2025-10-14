@@ -63,12 +63,15 @@ const ProfileDropdown: React.FC<ProfileDropdownProps> = ({ open, setOpen }) => {
       >
         Change Password
       </Link>
-      <Link
-        to="/logout"
-        className="block px-4 py-2 text-gray-700 hover:bg-gray-100 border-t"
+      <button
+        onClick={() => {
+          localStorage.clear();
+          window.location.reload();
+        }}
+        className="block px-4 py-2 text-gray-700 hover:bg-gray-100 border-t w-full"
       >
         Logout
-      </Link>
+      </button>
     </div>
   );
 };

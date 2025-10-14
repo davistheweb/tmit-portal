@@ -153,10 +153,6 @@ export default function Hostel() {
               <span class="value">${record.hostelName}</span>
             </div>
             <div class="detail-row">
-              <span class="label">Room Number:</span>
-              <span class="value">${record.room}</span>
-            </div>
-            <div class="detail-row">
               <span class="label">Academic Session:</span>
               <span class="value">${record.session}</span>
             </div>
@@ -224,7 +220,6 @@ export default function Hostel() {
                   <TableHead className="whitespace-nowrap">
                     Hostel Name
                   </TableHead>
-                  <TableHead className="whitespace-nowrap">Room</TableHead>
                   <TableHead className="whitespace-nowrap">Amount</TableHead>
                   <TableHead className="whitespace-nowrap">Session</TableHead>
                   <TableHead className="whitespace-nowrap">Status</TableHead>
@@ -240,7 +235,6 @@ export default function Hostel() {
                     <TableRow key={record.id}>
                       <TableCell className="font-medium">{index + 1}</TableCell>
                       <TableCell>{record.hostelName}</TableCell>
-                      <TableCell>{record.room}</TableCell>
                       <TableCell>{record.amount}</TableCell>
                       <TableCell>{record.session}</TableCell>
                       <TableCell>

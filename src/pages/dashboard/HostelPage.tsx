@@ -171,7 +171,7 @@ export default function Hostel() {
           <button class="print-button no-print" onclick="window.print()">Print Receipt</button>
 
           <div class="footer">
-            <p>This is an official receipt from FUTO Hostel Management</p>
+            <p>This is an official receipt from TMIT Hostel Management</p>
             <p>For inquiries, contact the hostel office</p>
           </div>
         </body>

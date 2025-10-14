@@ -7,6 +7,7 @@ import {
   LogOut,
   ChevronLeft,
   BookText,
+  House,
 } from "lucide-react";
 import { schoolLogo } from "@/assets";
 
@@ -41,6 +42,11 @@ const Sidebar: React.FC<SidebarProps> = ({
       name: "Acceptance Fees",
       icon: <CreditCard className="w-4 h-4" />,
       href: "acceptance-fee",
+    },
+    {
+      name: "Hostels",
+      icon: <House className="w-4 h-4" />,
+      href: "hostels",
     },
     {
       name: "Results",

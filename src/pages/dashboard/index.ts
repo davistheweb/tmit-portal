@@ -8,6 +8,10 @@ import DashboardIndex from "./DashboardIndex";
 import Sessions from "./Sessions";
 import PaymentSummary from "./PaymentSummary";
 import AcceptanceFeePage from "./AcceptanceFeePage";
+import Hostel from "./HostelPage";
+import BookHostel from "./BookHostel";
+
+
 export {
   Dashboard,
   Profile,
@@ -18,5 +22,7 @@ export {
   DashboardIndex,
   Sessions,
   PaymentSummary,
-  AcceptanceFeePage
+  AcceptanceFeePage,
+  Hostel,
+  BookHostel
 };

@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -13,7 +15,6 @@ import { useNavigate } from "react-router";
 interface HostelRecord {
   id: number;
   hostelName: string;
-  room: string;
   amount: string;
   session: string;
   status: string;
@@ -27,7 +28,6 @@ export default function Hostel() {
     {
       id: 1,
       hostelName: "HOSTEL A",
-      room: "A-205",
       amount: "₦40,000",
       session: "2024/2025",
       status: "Paid",
@@ -36,7 +36,6 @@ export default function Hostel() {
     {
       id: 2,
       hostelName: "HOSTEL B",
-      room: "B-112",
       amount: "₦40,000",
       session: "2023/2024",
       status: "Paid",
@@ -45,7 +44,6 @@ export default function Hostel() {
     {
       id: 3,
       hostelName: "HOSTEL A",
-      room: "A-308",
       amount: "₦40,000",
       session: "2022/2023",
       status: "Paid",
@@ -139,7 +137,7 @@ export default function Hostel() {
         </head>
         <body>
           <div class="header">
-            <h1>TMIT    </h1>
+            <h1>TMIT</h1>
             <p>Hostel Payment Receipt</p>
           </div>
           
@@ -188,7 +186,7 @@ export default function Hostel() {
 
   return (
     <div className="min-h-screen bg-background">
- 
+
 
       {/* Main Content */}
       <main className="container mx-auto px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
@@ -198,174 +196,246 @@ export default function Hostel() {
           </h1>
           <Button
             onClick={() => navigate("/dashboard/hostels/book-hostel")}
-            className="w-full bg-emerald-600 hover:bg-emerald-700 sm:w-auto cursor-pointer"
+            className="w-full bg-emerald-600 hover:bg-emerald-700 sm:w-auto"
           >
             Book Hostel
           </Button>
         </div>
 
-        {/* Hostel History Table */}
-        <div className="overflow-hidden rounded-lg border bg-white">
-          <div className="border-b bg-muted/50 px-4 py-3 sm:px-6">
-            <h2 className="text-base font-semibold text-foreground sm:text-lg">
-              Hostel History
-            </h2>
-          </div>
+        {hostelRecords.length > 0 ? (
+          <>
+            {/* Mobile Card View */}
+            <div className="space-y-4 md:hidden">
+              {hostelRecords.map((record, index) => (
+                <div
+                  key={record.id}
+                  className="rounded-lg border bg-white p-4 shadow-sm"
+                >
+                  <div className="mb-3 flex items-start justify-between">
+                    <div>
+                      <h3 className="text-lg font-semibold text-foreground">
+                        {record.hostelName}
+                      </h3>
+                      <p className="text-sm text-muted-foreground">
+                        #{index + 1}
+                      </p>
+                    </div>
+                    <span className="inline-flex items-center rounded-full bg-emerald-50 px-3 py-1 text-xs font-medium text-emerald-700">
+                      {record.status}
+                    </span>
+                  </div>
 
-          <div className="overflow-x-auto">
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead className="w-16 whitespace-nowrap">S/N</TableHead>
-                  <TableHead className="whitespace-nowrap">
-                    Hostel Name
-                  </TableHead>
-                  <TableHead className="whitespace-nowrap">Amount</TableHead>
-                  <TableHead className="whitespace-nowrap">Session</TableHead>
-                  <TableHead className="whitespace-nowrap">Status</TableHead>
-                  <TableHead className="whitespace-nowrap">
-                    Payment date
-                  </TableHead>
-                  <TableHead className="whitespace-nowrap">Action</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {hostelRecords.length > 0 ? (
-                  hostelRecords.map((record, index) => (
-                    <TableRow key={record.id}>
-                      <TableCell className="font-medium">{index + 1}</TableCell>
-                      <TableCell>{record.hostelName}</TableCell>
-                      <TableCell>{record.amount}</TableCell>
-                      <TableCell>{record.session}</TableCell>
-                      <TableCell>
-                        <span className="inline-flex items-center rounded-full bg-emerald-50 px-2 py-1 text-xs font-medium text-emerald-700 sm:px-3 sm:text-sm">
-                          {record.status}
-                        </span>
-                      </TableCell>
-                      <TableCell>
+                  <div className="space-y-2 border-t pt-3">
+                    <div className="flex justify-between text-sm">
+                      <span className="text-muted-foreground">Amount:</span>
+                      <span className="font-medium text-foreground">
+                        {record.amount}
+                      </span>
+                    </div>
+                    <div className="flex justify-between text-sm">
+                      <span className="text-muted-foreground">Session:</span>
+                      <span className="font-medium text-foreground">
+                        {record.session}
+                      </span>
+                    </div>
+                    <div className="flex justify-between text-sm">
+                      <span className="text-muted-foreground">
+                        Payment Date:
+                      </span>
+                      <span className="font-medium text-foreground">
                         {new Date(record.paymentDate).toLocaleDateString()}
-                      </TableCell>
-                      <TableCell>
-                        <Button
-                          onClick={() => handlePrintReceipt(record)}
-                          variant="outline"
-                          size="sm"
-                          className="whitespace-nowrap text-xs sm:text-sm"
-                        >
-                          Print Receipt
-                        </Button>
-                      </TableCell>
+                      </span>
+                    </div>
+                  </div>
+
+                  <Button
+                    onClick={() => handlePrintReceipt(record)}
+                    variant="outline"
+                    className="mt-4 w-full"
+                  >
+                    Print Receipt
+                  </Button>
+                </div>
+              ))}
+            </div>
+
+            {/* Desktop Table View */}
+            <div className="hidden overflow-hidden rounded-lg border bg-white md:block">
+              <div className="border-b bg-muted/50 px-4 py-3 sm:px-6">
+                <h2 className="text-base font-semibold text-foreground sm:text-lg">
+                  Hostel History
+                </h2>
+              </div>
+
+              <div className="overflow-x-auto">
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead className="w-16 whitespace-nowrap">
+                        S/N
+                      </TableHead>
+                      <TableHead className="whitespace-nowrap">
+                        Hostel Name
+                      </TableHead>
+                      <TableHead className="whitespace-nowrap">
+                        Amount
+                      </TableHead>
+                      <TableHead className="whitespace-nowrap">
+                        Session
+                      </TableHead>
+                      <TableHead className="whitespace-nowrap">
+                        Status
+                      </TableHead>
+                      <TableHead className="whitespace-nowrap">
+                        Payment date
+                      </TableHead>
+                      <TableHead className="whitespace-nowrap">
+                        Action
+                      </TableHead>
                     </TableRow>
-                  ))
-                ) : (
-                  <TableRow>
-                    <TableCell colSpan={8} className="h-96 text-center">
-                      <div className="flex flex-col items-center justify-center py-8">
-                        <div className="mb-4">
-                          <svg
-                            width="200"
-                            height="200"
-                            viewBox="0 0 200 200"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="mx-auto h-32 w-32 sm:h-48 sm:w-48"
+                  </TableHeader>
+                  <TableBody>
+                    {hostelRecords.map((record, index) => (
+                      <TableRow key={record.id}>
+                        <TableCell className="font-medium">
+                          {index + 1}
+                        </TableCell>
+                        <TableCell>{record.hostelName}</TableCell>
+                        <TableCell>{record.amount}</TableCell>
+                        <TableCell>{record.session}</TableCell>
+                        <TableCell>
+                          <span className="inline-flex items-center rounded-full bg-emerald-50 px-2 py-1 text-xs font-medium text-emerald-700 sm:px-3 sm:text-sm">
+                            {record.status}
+                          </span>
+                        </TableCell>
+                        <TableCell>
+                          {new Date(record.paymentDate).toLocaleDateString()}
+                        </TableCell>
+                        <TableCell>
+                          <Button
+                            onClick={() => handlePrintReceipt(record)}
+                            variant="outline"
+                            size="sm"
+                            className="whitespace-nowrap text-xs sm:text-sm"
                           >
-                            <ellipse
-                              cx="100"
-                              cy="180"
-                              rx="80"
-                              ry="10"
-                              fill="#10b981"
-                              opacity="0.2"
-                            />
-                            <rect
-                              x="60"
-                              y="80"
-                              width="80"
-                              height="100"
-                              rx="4"
-                              fill="#10b981"
-                              opacity="0.3"
-                            />
-                            <rect
-                              x="70"
-                              y="90"
-                              width="25"
-                              height="30"
-                              rx="2"
-                              fill="#10b981"
-                            />
-                            <rect
-                              x="105"
-                              y="90"
-                              width="25"
-                              height="30"
-                              rx="2"
-                              fill="#10b981"
-                            />
-                            <rect
-                              x="70"
-                              y="130"
-                              width="25"
-                              height="30"
-                              rx="2"
-                              fill="#10b981"
-                            />
-                            <rect
-                              x="105"
-                              y="130"
-                              width="25"
-                              height="30"
-                              rx="2"
-                              fill="#10b981"
-                            />
-                            <circle cx="150" cy="60" r="30" fill="#fef3c7" />
-                            <circle cx="150" cy="90" r="25" fill="#fde68a" />
-                            <circle cx="150" cy="115" r="20" fill="#fcd34d" />
-                            <path
-                              d="M140 50 Q145 45 150 50 Q155 45 160 50"
-                              stroke="#92400e"
-                              strokeWidth="2"
-                              fill="none"
-                            />
-                            <circle cx="145" cy="55" r="2" fill="#92400e" />
-                            <circle cx="155" cy="55" r="2" fill="#92400e" />
-                            <path
-                              d="M145 62 Q150 65 155 62"
-                              stroke="#92400e"
-                              strokeWidth="2"
-                              fill="none"
-                            />
-                            <rect
-                              x="30"
-                              y="140"
-                              width="15"
-                              height="40"
-                              rx="7.5"
-                              fill="#10b981"
-                            />
-                            <rect
-                              x="20"
-                              y="150"
-                              width="35"
-                              height="30"
-                              rx="4"
-                              fill="#10b981"
-                              opacity="0.5"
-                            />
-                          </svg>
-                        </div>
-                        <p className="text-sm text-muted-foreground sm:text-base">
-                          No hostel records found
-                        </p>
-                      </div>
-                    </TableCell>
-                  </TableRow>
-                )}
-              </TableBody>
-            </Table>
+                            Print Receipt
+                          </Button>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </div>
+            </div>
+          </>
+        ) : (
+          <div className="overflow-hidden rounded-lg border bg-white">
+            <div className="border-b bg-muted/50 px-4 py-3 sm:px-6">
+              <h2 className="text-base font-semibold text-foreground sm:text-lg">
+                Hostel History
+              </h2>
+            </div>
+            <div className="flex flex-col items-center justify-center py-12 sm:py-16">
+              <div className="mb-4">
+                <svg
+                  width="200"
+                  height="200"
+                  viewBox="0 0 200 200"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="mx-auto h-32 w-32 sm:h-48 sm:w-48"
+                >
+                  <ellipse
+                    cx="100"
+                    cy="180"
+                    rx="80"
+                    ry="10"
+                    fill="#10b981"
+                    opacity="0.2"
+                  />
+                  <rect
+                    x="60"
+                    y="80"
+                    width="80"
+                    height="100"
+                    rx="4"
+                    fill="#10b981"
+                    opacity="0.3"
+                  />
+                  <rect
+                    x="70"
+                    y="90"
+                    width="25"
+                    height="30"
+                    rx="2"
+                    fill="#10b981"
+                  />
+                  <rect
+                    x="105"
+                    y="90"
+                    width="25"
+                    height="30"
+                    rx="2"
+                    fill="#10b981"
+                  />
+                  <rect
+                    x="70"
+                    y="130"
+                    width="25"
+                    height="30"
+                    rx="2"
+                    fill="#10b981"
+                  />
+                  <rect
+                    x="105"
+                    y="130"
+                    width="25"
+                    height="30"
+                    rx="2"
+                    fill="#10b981"
+                  />
+                  <circle cx="150" cy="60" r="30" fill="#fef3c7" />
+                  <circle cx="150" cy="90" r="25" fill="#fde68a" />
+                  <circle cx="150" cy="115" r="20" fill="#fcd34d" />
+                  <path
+                    d="M140 50 Q145 45 150 50 Q155 45 160 50"
+                    stroke="#92400e"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+                  <circle cx="145" cy="55" r="2" fill="#92400e" />
+                  <circle cx="155" cy="55" r="2" fill="#92400e" />
+                  <path
+                    d="M145 62 Q150 65 155 62"
+                    stroke="#92400e"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+                  <rect
+                    x="30"
+                    y="140"
+                    width="15"
+                    height="40"
+                    rx="7.5"
+                    fill="#10b981"
+                  />
+                  <rect
+                    x="20"
+                    y="150"
+                    width="35"
+                    height="30"
+                    rx="4"
+                    fill="#10b981"
+                    opacity="0.5"
+                  />
+                </svg>
+              </div>
+              <p className="text-sm text-muted-foreground sm:text-base">
+                No hostel records found
+              </p>
+            </div>
           </div>
-        </div>
+        )}
       </main>
     </div>
   );

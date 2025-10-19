@@ -50,6 +50,53 @@ interface FeeHistoryResponse {
   total: number;
 }
 
+interface Session {
+  id: number;
+  name: string;
+  start_date: string;
+  end_date: string;
+  is_active: boolean;
+  created_at: string;
+  updated_at: string;
+}
+
+interface InitiatePaymentRequest {
+  student_id: number;
+  session_id: number;
+  level: number;
+  payment_type: "full" | "installment_first" | "installment_second";
+}
+
+interface InitiatePaymentResponse {
+  message: string;
+  payment: {
+    id: number;
+    student_id: number;
+    fee_structure_id: number;
+    session_id: number;
+    reference: string;
+    amount: string;
+    payment_type: "full" | "installment_first" | "installment_second";
+    status: "pending";
+    created_at: string;
+    updated_at: string;
+    fee_structure?: {
+      id: number;
+      description: string;
+      session: { id: number; name: string };
+    };
+  };
+  paystack: {
+    status: boolean;
+    message: string;
+    data: {
+      authorization_url: string;
+      access_code: string;
+      reference: string;
+    };
+  };
+}
+
 export const paymentService = {
   getFeeHistory: async (
     studentId: number,
@@ -82,4 +129,38 @@ export const paymentService = {
       );
     }
   },
+
+  initiatePayment: async (
+    data: InitiatePaymentRequest
+  ): Promise<InitiatePaymentResponse> => {
+    try {
+      const response = await api.post("/api/payment/initiate", data);
+      return response.data;
+    } catch (err: any) {
+      throw new Error(
+        err.response?.data?.message || "Failed to initiate payment"
+      );
+    }
+  },
 };
+
+export const dummySessions: Session[] = [
+  {
+    id: 3,
+    name: "2025/2026",
+    start_date: "2025-10-25T00:00:00.000000Z",
+    end_date: "2025-10-31T00:00:00.000000Z",
+    is_active: true,
+    created_at: "2025-10-19T07:16:36.000000Z",
+    updated_at: "2025-10-19T12:02:59.000000Z",
+  },
+  {
+    id: 4,
+    name: "2026/2027",
+    start_date: "2025-10-24T00:00:00.000000Z",
+    end_date: "2025-10-31T00:00:00.000000Z",
+    is_active: false,
+    created_at: "2025-10-19T11:41:17.000000Z",
+    updated_at: "2025-10-19T12:02:59.000000Z",
+  },
+];

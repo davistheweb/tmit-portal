@@ -11,13 +11,11 @@ import {
   Dashboard,
   DashboardIndex,
   FeeHistoryPage,
-  Fees,
   Hostel,
   OnBoarding,
-  PaymentSummary,
+  PaymentPage,
   Profile,
   ResultPage,
-  Sessions,
 } from "./pages/dashboard";
 
 const App: React.FC = () => {
@@ -40,9 +38,10 @@ const App: React.FC = () => {
           >
             <Route index element={<DashboardIndex />} />
             <Route path="profile" element={<Profile />} />
-            <Route path="fees" element={<Fees />} />
+            {/* <Route path="fees" element={<Fees />} />
             <Route path="fees/sessions" element={<Sessions />} />
-            <Route path="fees/pay_fees" element={<PaymentSummary />} />
+            <Route path="fees/pay_fees" element={<PaymentSummary />} /> */}
+            <Route path="fees/payment" element={<PaymentPage/>} />
             <Route path="fees/history" element={<FeeHistoryPage />} />
             <Route path="acceptance-fee" element={<AcceptanceFeePage />} />
             <Route path="hostels" element={<Hostel />} />

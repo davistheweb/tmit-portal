@@ -11,6 +11,7 @@ import AcceptanceFeePage from "./AcceptanceFeePage";
 import Hostel from "./HostelPage";
 import BookHostel from "./BookHostel";
 import FeeHistoryPage from "./FeeHistoryPage";
+import PaymentPage from "./PaymentPage";
 
 export {
   Dashboard,
@@ -26,4 +27,5 @@ export {
   Hostel,
   BookHostel,
   FeeHistoryPage,
+  PaymentPage,
 };

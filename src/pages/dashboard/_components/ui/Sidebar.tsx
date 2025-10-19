@@ -25,6 +25,10 @@ interface SidebarProps {
 
 const feesItems = [
   {
+    name: "Payment",
+    href: "/dashboard/fees/payment",
+  },
+  {
     name: "History",
     href: "/dashboard/fees/history",
   },

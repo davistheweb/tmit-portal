@@ -1,15 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router";
 import {
   Home,
   User,
   CreditCard,
-  LogOut,
   ChevronLeft,
   BookText,
   House,
+  ChevronDown,
+  Wallet,
 } from "lucide-react";
 import { schoolLogo } from "@/assets";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
 
 interface SidebarProps {
   isMobile: boolean;
@@ -17,11 +23,20 @@ interface SidebarProps {
   closeSidebar: () => void;
 }
 
+const feesItems = [
+  {
+    name: "History",
+    href: "/dashboard/fees/history",
+  },
+];
+
 const Sidebar: React.FC<SidebarProps> = ({
   isMobile,
   sidebarOpen,
   closeSidebar,
 }) => {
+  const [feesOpen, setFeesOpen] = useState(false);
+
   const navLinks = [
     {
       name: "Dashboard",
@@ -32,11 +47,6 @@ const Sidebar: React.FC<SidebarProps> = ({
       name: "Profile",
       icon: <User className="w-4 h-4" />,
       href: "/dashboard/profile",
-    },
-    {
-      name: "School Fees",
-      icon: <CreditCard className="w-4 h-4" />,
-      href: "fees",
     },
     {
       name: "Acceptance Fees",
@@ -53,7 +63,6 @@ const Sidebar: React.FC<SidebarProps> = ({
       icon: <BookText className="w-4 h-4" />,
       href: "results",
     },
-    { name: "Sign Out", icon: <LogOut className="w-4 h-4" />, href: "/" },
   ];
 
   return (
@@ -89,6 +98,32 @@ const Sidebar: React.FC<SidebarProps> = ({
             <span className="ml-3">{link.name}</span>
           </Link>
         ))}
+
+        <Collapsible open={feesOpen} onOpenChange={setFeesOpen}>
+          <CollapsibleTrigger className="flex items-center justify-between w-full px-3 py-2 text-gray-700 hover:bg-gray-100 rounded text-[14px] cursor-pointer">
+            <div className="flex items-center">
+              <Wallet className="w-4 h-4" />
+              <span className="ml-3">Fees</span>
+            </div>
+            <ChevronDown
+              className={`w-4 h-4 transition-transform ${
+                feesOpen ? "rotate-180" : ""
+              }`}
+            />
+          </CollapsibleTrigger>
+          <CollapsibleContent className="pl-4 space-y-1 mt-1">
+            {feesItems.map((item) => (
+              <Link
+                key={item.name}
+                to={item.href}
+                className="flex items-center px-3 py-2 text-gray-600 hover:bg-gray-100 rounded text-[13px]"
+                onClick={() => isMobile && closeSidebar()}
+              >
+                <span className="ml-6">{item.name}</span>
+              </Link>
+            ))}
+          </CollapsibleContent>
+        </Collapsible>
       </nav>
     </div>
   );

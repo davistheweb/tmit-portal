@@ -10,7 +10,7 @@ import PaymentSummary from "./PaymentSummary";
 import AcceptanceFeePage from "./AcceptanceFeePage";
 import Hostel from "./HostelPage";
 import BookHostel from "./BookHostel";
-
+import FeeHistoryPage from "./FeeHistoryPage";
 
 export {
   Dashboard,
@@ -24,5 +24,6 @@ export {
   PaymentSummary,
   AcceptanceFeePage,
   Hostel,
-  BookHostel
+  BookHostel,
+  FeeHistoryPage,
 };

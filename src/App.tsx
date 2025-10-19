@@ -10,6 +10,7 @@ import {
   ChangePassword,
   Dashboard,
   DashboardIndex,
+  FeeHistoryPage,
   Fees,
   Hostel,
   OnBoarding,
@@ -42,6 +43,7 @@ const App: React.FC = () => {
             <Route path="fees" element={<Fees />} />
             <Route path="fees/sessions" element={<Sessions />} />
             <Route path="fees/pay_fees" element={<PaymentSummary />} />
+            <Route path="fees/history" element={<FeeHistoryPage />} />
             <Route path="acceptance-fee" element={<AcceptanceFeePage />} />
             <Route path="hostels" element={<Hostel />} />
             <Route path="hostels/book-hostel" element={<BookHostel />} />
